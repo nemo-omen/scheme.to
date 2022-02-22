@@ -1,0 +1,68 @@
+/* 
+   This reset strips default browser styles,
+   allowing me to work from a clean slate
+   without fussing too much.
+
+   A lot of these resets are from this post:
+   https://piccalil.li/blog/a-modern-css-reset/
+*/
+
+
+/* 
+   Set box-sizing for everything, we can
+   set box sizing on a per-element basis
+   if we want to. 
+*/
+*,
+*::before,
+*::after {
+   box-sizing: border-box;
+}
+
+/* Remove default margin from everything */
+
+* {
+   margin: 0;
+}
+
+/* 
+   Fix smooth-scrolling behavior
+   @see: https://css-tricks.com/fixing-smooth-scrolling-with-find-on-page/
+*/
+html:focus-within {
+   scroll-behavior: smooth;
+}
+
+
+body {
+   /* Make body element fill screen height */
+   min-height: 100vh;
+
+   /* optimize text rendering for speed */
+   text-rendering: optimizeSpeed;
+}
+
+/* 
+   Make default sizing of multimedia elements
+   easy to work with.
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+   display: block;
+   max-width: 100%;
+}
+
+/*
+   Inherit font used in the rest of the
+   document in form inputs
+*/
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}

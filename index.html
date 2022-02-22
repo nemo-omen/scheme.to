@@ -13,7 +13,7 @@
       Load main script as a module. This will be deferred until the
       rest of the DOM has loaded, but before the 'DOMContentLoaded'
       event has fired.
-      @see:
+      @see: 
 
       An additional benefit of using ES Modules is that 'strict mode' is
       enabled by default.
@@ -24,13 +24,43 @@
 
 <body>
    <header>
-      <h1>
-         <a href="/">
-            Scheme.to
-         </a>
-      </h1>
+      <div class="header-inner">
+         <h1 class="header-main-link">
+            <a href="/" aria-label="Scheme.to">
+               Scheme.to
+            </a>
+         </h1>
+         <nav>
+            <ol class="header-menu">
+               <li class="header-menu-item" role="menuitem">
+                  <a class="menu-item-link" id="menu-day-link">
+                     Day
+                  </a>
+               </li>
+               <li class="header-menu-item" role="menuitem">
+                  <a class="menu-item-link" id="menu-week-link">
+                     Week
+                  </a>
+               </li>
+               <li class="header-menu-item" role="menuitem">
+                  <a class="menu-item-link" id="menu-month-link">
+                     Month
+                  </a>
+               </li>
+               <li class="header-menu-item" role="menuitem">
+                  <a class="menu-item-link" id="menu-year-link">
+                     Year
+                  </a>
+               </li>
+            </ol>
+         </nav>
+      </div>
    </header>
-   <main></main>
+   <aside>
+
+   </aside>
+   <main>
+   </main>
    <footer></footer>
 </body>
 

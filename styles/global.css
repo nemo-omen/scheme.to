@@ -1,0 +1,56 @@
+
+html, 
+body {
+   font-size: 1em;
+}
+
+button, a {
+   cursor: pointer;
+   text-decoration: none;
+}
+
+a:hover {
+   text-decoration: underline;
+}
+
+.header-inner {
+   display: flex;
+   align-items: baseline;
+   justify-content: center;
+   gap: 1rem;
+   flex-wrap: wrap;
+}
+
+.header-main-link {
+   margin: 0;
+   padding: 0;
+   line-height: 1;
+}
+
+.header-main-link a {
+   text-decoration: none;
+}
+
+.header-menu {
+   display: flex;
+   gap: 1rem;
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+.menu-item-link {
+   background: transparent;
+   border: none;
+   padding: 1rem;
+   font-size: 1.125rem;
+}
+
+
+/* Media Queries */
+
+@media screen and (min-width: 35rem) {
+   .header-inner {
+      justify-content: space-between;
+   }
+}
