@@ -20,7 +20,7 @@ const routes = [
  // okay, let's try the 'revealing module pattern'
  // with this little router.
  // @see: https://coryrylan.com/blog/javascript-module-pattern-basics
- const router = (function () {
+ export const router = (function () {
    let outlet = document.querySelector('main');
  
    // convert href string into a URL object and return URL.pathname
