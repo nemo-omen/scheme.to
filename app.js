@@ -1,2 +1,2 @@
 import { routeListener } from './scripts/router.js';
-import { RouteLink } from './components/RouteLink.js';
+import { Scheme } from './src/scheme.js';

@@ -60,10 +60,13 @@ const routes = [
 // sense. Before learning more about IIFEs, I would have had to import
 // this and call it explicitly. I feel like this will be useful in the future.
 
+// I may just abandon this in favor of using a custom element so I can
+// keep things nice and clean
+
  export const routeListener = (function () {
    //  listen for all window click events
    window.addEventListener('click', (event) => {
-      // if they have a specific data-attribute, it
+      // if a link has a specific data-attribute, it
       // means we should modify their default behavior
       // and use our router to deliver dynamic content
       // rather than navigating to a new location and losing
@@ -74,7 +77,7 @@ const routes = [
       // prevent links from navigating away from the page
       event.preventDefault();
       
-      // send the target element's href to the router   
+      // send the target element's href to the router
       router.loadPage(event.target.href);
    });
  })();
