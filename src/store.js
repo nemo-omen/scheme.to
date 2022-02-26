@@ -1,15 +1,31 @@
-const store = (function () {
-   return function (initialState) {
-      const data = new Proxy(initialState, {
-         
-      });
+export const Store = (function () {
+   let store = {};
 
-      const self = {
-         set: function (key, val) {
-            data[key] = value;
-         },
-      };
+   const events = {};
 
-      return self;
-   }
+   const Store = (initialStore = {}) {
+      store = initialStore;
+   };
+
+   Store.prototype.on = function (eventName, callback, dep = []) {
+      if (typeof callback !== 'function') {
+         console.error('on() expects a function as the second argument');
+         return false;
+      }
+      
+      if (Object.prototype.toString.call(dep) !== '[object Array]') {
+         console.error('on() expects an array as the third argument');
+         return false;
+      }
+
+      if (!events.hasOwnProperty(eventName)) {
+         events[eventName] = [];
+      }
+
+      events[eventName].push({dep, callback});
+      return true;
+   };
+   Store.prototype.emit = function (eventName, payload);
+
+   return Store;
 }());
