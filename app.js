@@ -1,62 +1,56 @@
 import { routeListener } from './src/router.js';
+import { createElement, createReactiveElement } from './src/util/createElement.js';
+import { createApp } from './src/util/createApp.js';
+import { appSkeleton } from './src/components/AppSkeleton.js';
 
-const createElement = function (elementObject, parentTarget) {
-   const el = document.createElement(elementObject.tagName);
+createElement(appSkeleton, document.body);
 
-   if (elementObject.textContent) {
-      const text = document.createTextNode(elementObject.textContent);
-      el.appendChild(text);
-   }
+let app = createApp({initialState: {count: 0}});
 
-   if (elementObject.attributes) {
-      for (let entry of Object.entries(elementObject.attributes)) {
-         el.setAttribute(entry[0], entry[1]);
-      }
-   }
-
-   if(elementObject.classList) {
-      for (let className of elementObject.classList) {
-         el.classList.add(className);
-      }
-   }
-
-   parentTarget.appendChild(el);
-
-   if (!elementObject.children) {
-      return;
-   }
-
-   elementObject.children.forEach((child) => createElement(child, el))
-};
-
-const tree = {
-   root: {
-      tagName: 'div',
+const incButton = createElement(
+   {
+      tagName: 'button',
       attributes: {
-         id: 'test-div',
-         class: 'something another-thing super-wide',
-         role: 'section'
+         id: 'my-button',
       },
-      children: [
+      textContent: '++',
+      events: [
          {
-            tagName: 'p',
-            id: 'special-paragraph',
-            textContent: 'This is some text',
-            classList: ['test', 'whatever']
-         },
-         {
-            tagName: 'hr'
+            type: 'click',
+            callback: function () {
+               app.setState('count', app.state.count + 1);
+            }
          }
       ]
-   }
-};
-
-createElement(tree.root, document.querySelector('#app'));
-
-createElement({
-   tagName: 'p',
-   attributes: {
-      class: 'this',
    },
-   textContent: 'This is some more text',
-}, document.querySelector('#test-div'));
+   document.querySelector('#app')
+);
+
+const decButton = createElement({
+   tagName: 'button',
+   attributes: {
+      id: 'my-button',
+   },
+   textContent: '--',
+   events: [
+      {
+         type: 'click',
+         callback: function () {
+            app.setState('count', app.state.count - 1);
+         }
+      }
+   ]
+}, document.querySelector('#app'));
+
+const countTracker2 = createReactiveElement(
+   {
+      tagName: 'p',
+      attributes: {
+         id: 'counter-tracker',
+      },
+      textContent: app.state.count.toString(),
+   }, 
+   document.querySelector('main'), 
+   app,
+   'count'
+);
