@@ -3,6 +3,7 @@ export const createApp = (function () {
 
    const appState = options.initialState || {};
    const subscribers = [];
+
    const state = new Proxy(appState, {
       set: function (state, key, value) {
          state[key] = value;
@@ -45,3 +46,35 @@ export const createApp = (function () {
       };
    };
 }());
+
+export const createNonProxyApp = function (initialState) {
+   const state = {...initialState} || {};
+   const subscribers = {};
+
+   const notify = function (key, oldValue, newValue) {
+      subscribers[key].forEach((callback) => callback(oldValue, newValue));
+   }
+
+   return {
+      set: function (key, value) {
+         const oldState = {...state};
+         state[key] = value;
+         notify(key, oldState[key], state[key]);
+      },
+      get: function (key) {
+         return state[key];
+      },
+      remove: function (key) {
+         const oldState = {...state[key]};
+         delete state[key];
+         notify(key, oldState, state[key]);
+      },
+      subscribe: function (key, callback) {
+         if (!subscribers.hasOwnProperty(key)) {
+            subscribers[key] = [callback];
+         } else {
+            subscribers[key].push(callback);
+         }
+      }
+   };
+};
