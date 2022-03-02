@@ -1,4 +1,4 @@
-export const createElement = function (elementObject, parentTarget) {
+export const createElement = function (elementObject, parentNode) {
    let el = document.createElement(elementObject.tagName);
 
    if (elementObject.textContent) {
@@ -18,7 +18,7 @@ export const createElement = function (elementObject, parentTarget) {
       }
    }
 
-   const node = parentTarget.appendChild(el);
+   const node = parentNode.appendChild(el);
 
    if (!elementObject.children) {
       return node;
@@ -27,7 +27,7 @@ export const createElement = function (elementObject, parentTarget) {
    return elementObject.children.forEach((child) => createElement(child, el));
 };
 
-export const createReactiveElement = function (elementObject, parentTarget, subscriptionTarget, subscriptionKey) {
-   const element = createElement(elementObject, parentTarget);
+export const createReactiveElement = function (elementObject, parentNode, subscriptionTarget, subscriptionKey) {
+   const element = createElement(elementObject, parentNode);
    subscriptionTarget.subscribe((state) => element.innerText = state[subscriptionKey]);
 }
