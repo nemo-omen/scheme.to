@@ -1,6 +1,7 @@
 const createElement = tagName => document.createElement(tagName);
 
 const text = element => text => element.innerText = text;
+const appendText = element => text => element.innerText += text;
 
 const child = element => childElement => {
    element.appendChild(childElement);
@@ -29,6 +30,16 @@ const div = createElement('div');
 
 attributes(div)([{class: 'okay'}]);
 const p = createElement('p');
-text(p)('I am a paragraph');
-child(div)(p);
-child(app)(div);
+const pText = text(p);
+pText('I am a paragraph\n');
+const pAppend = appendText(p);
+pAppend(' This is more text');
+pAppend('\nAnd even more');
+// child(div)(p);
+// child(app)(div);
+
+const appChild = child(app);
+const divChild = child(div);
+
+appChild(div);
+divChild(p);
