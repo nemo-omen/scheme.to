@@ -1,25 +1,22 @@
 import { select, create, insert, replace, remove } from './src/util/domUtils.js';
 import Store from './src/lib/Store.js';
 import Component from './src/lib/Component.js';
+import Header from './src/components/Header.js';
 
-const app = (function () {
-   const root = select('#app');
-   const state = Store();
+const store = Store();
 
-   const p = create('p');
-   p.innerText = 'I am a paragraph';
+store.set('title', 'Scheme.to');
 
-   insert(root, p);
-}());
+const app = Component('#app', {
+   data: store,
+   template: function (props) {
+      return `
+         ${Header('#app', {data: store, ...props})}
+      `;
+   },
+});
 
-const template = function (strings, ...values) {
-   let str = '';
-   strings.forEach((string, i) => {
-      str += `${string}${values[i] || ''}`;
-   });
-   return str;
-}
+app.render();
 
-const comp = Component({name: 'Jeff'}, template`This is a string with ${500}`);
-
-console.log(comp);
+store.set('title', 'Whatever');
+store.set('title', 'Another thing');

@@ -1,30 +1,16 @@
-const Header = function (props) {
-   const {store, parentSelector} = props;
+import { select, create, insert, replace, remove } from '../util/domUtils.js';
+import Component from '../lib/Component.js';
 
-   let title = store.get('title');
-
-   store.subscribe('title', function (oldState, newState) {
-      title = newState;
-      template(title);
-   });
-
-   const template = function (properties) {
-      const {title} = properties;
-      return `
-      <header>
-         <h1>${title}</h1>
-         <nav>
-            <ol>
-               <li>
-                  <a href="/">Home</a>
-               </li>
-            </ol>
-         </nav>
-      </header>
-   `;
-   };
-
-   return template({title});
-};
+const Header = (selector, options) => Component(selector, {
+      data: options.data,
+      template: function (props) {
+         return `
+            <header>
+               <h1>
+                  <a href="/">${props.title}</a>
+               </h1>
+            </header>`;
+      }
+   }).render();
 
 export default Header;
