@@ -8,6 +8,8 @@
    <meta name="description" content="Scheme.to — Your perfect planner.">
 
    <!-- Load main stylesheet -->
+   <link rel="stylesheet" href="styles/fonts.css">
+   <link rel="stylesheet" href="styles/colors.css">
    <link rel="stylesheet" href="styles/global.css">
    <!-- 
       Load main script as a module. This will be deferred until the
@@ -22,7 +24,37 @@
    <title>Scheme.to</title>
 </head>
 
-<body id="app">
+<body>
+   <header>
+      <button class="menu-toggle">S</button>
+      <div class="header-inner">
+         <div class="header-main-link">
+            <h1>
+               <a href="/">Scheme.to</a>
+            </h1>
+         </div>
+         <nav>
+            <ol class="header-menu">
+               <li class="menu-item">
+                  <a data-route class="menu-item-link" href="/">Overview</a>
+               </li>
+               <li class="menu-item">
+                  <a data-route class="menu-item-link" href="/day">Day</a>
+               </li>
+               <li class="menu-item">
+                  <a data-route class="menu-item-link" href="/week">Week</a>
+               </li>
+               <li class="menu-item">
+                  <a data-route class="menu-item-link" href="/month">Month</a>
+               </li>
+            </ol>
+         </nav>
+      </div>
+   </header>
+   <main>
+      <h2>Overview</h2>
+   </main>
+   <footer></footer>
 </body>
 
 </html>

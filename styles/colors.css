@@ -1,0 +1,38 @@
+:root {
+   /* CSS HSL */
+   --rich-black-fogra-29: hsla(207, 90%, 4%, 1);
+   --tart-orange: hsla(0, 99%, 64%, 1);
+   --heliotrope: hsla(284, 100%, 72%, 1);
+   --portland-orange: hsla(10, 97%, 59%, 1);
+   --snow: hsla(15, 50%, 97%, 1);
+   --blue-ncs: hsla(195, 100%, 39%, 1);
+   --pacific-blue: hsla(187, 66%, 48%);
+
+   --background: var(--snow);
+   --foreground: var(--rich-black-fogra-29);
+   --accent: var(--heliotrope);
+   /* --accent: var(--portland-orange); */
+   --primary: var(--pacific-blue);
+
+   --link: var(--primary);
+   --hover: var(--accent);
+}
+
+[href] {
+   color: currentColor;
+}
+
+/* [href]:hover {
+   color: var(--accent);
+} */
+
+/* @media screen and (prefers-color-scheme: dark) {
+   :root {
+      --foreground: var(--snow);
+      --background: var(--rich-black-fogra-29);
+      --accent: var(--pacific-blue);
+      --primary: var(--heliotrope);
+   }
+} */
+
+

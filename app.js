@@ -1,22 +1,12 @@
 import { select, create, insert, replace, remove } from './src/util/domUtils.js';
+
 import Store from './src/lib/Store.js';
-import Component from './src/lib/Component.js';
-import Header from './src/components/Header.js';
 
-const store = Store();
+import { routeListener } from './src/lib/router.js';
 
-store.set('title', 'Scheme.to');
+const menuButton = select('.menu-toggle');
+const menu = select('nav');
 
-const app = Component('#app', {
-   data: store,
-   template: function (props) {
-      return `
-         ${Header('#app', {data: store, ...props})}
-      `;
-   },
+menuButton.addEventListener('click', function (event) {
+   menu.classList.toggle('menu-open');
 });
-
-app.render();
-
-store.set('title', 'Whatever');
-store.set('title', 'Another thing');
