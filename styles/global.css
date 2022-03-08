@@ -95,7 +95,7 @@ a:hover, .header-main-link:hover {
 }
 
 /* Tablet landscape -- narrower */
-@media screen and (max-width: 47rem) {
+@media screen and (max-width: 48rem) {
    header,
    main,
    footer {
