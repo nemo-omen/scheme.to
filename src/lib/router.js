@@ -1,38 +1,40 @@
 import Home from '../pages/Home.js';
 
-const routes = [
-  {
+const routes = {
+  home: {
     id: '',
     path: '/',
     template: Home.template
   },
-  {
+  day: {
     id: 'day',
     path: '/day',
     template: `<h2>Day</h2>`
   },
-  {
+  week: {
     id: 'week',
     path: '/week',
     template: `<h2>Week</h2>`
   },
-  {
+  month: {
     id: 'month',
     path: '/month',
     template: `<h2>Month</h2>`
   },
-  {
+  year: {
     id: 'year',
     path: '/year',
     template: `<h2>Year</h2>`
   }
-];
+};
 
  // okay, let's try the 'revealing module pattern'
  // with this little router.
  // @see: https://coryrylan.com/blog/javascript-module-pattern-basics
 const router = (function () {
   let outlet = document.querySelector('main');
+  // keep current loaded page to fire later
+  let loadedPage;
 
   // convert href string into a URL object and return URL.pathname
   // so we can avoid getting mired in regex (winning)
@@ -51,7 +53,20 @@ const router = (function () {
     // console.log('matching: ', path);
     // naive! -- make this match longer paths!
     // @see: https://www.willtaylor.blog/client-side-routing-in-vanilla-js/
-    return routes.find((route) => route.path === `/${routeId}`);
+    // return routes.find((route) => route.path === `/${routeId}`);
+    return (
+      routeId === ''
+      ? routes.home
+      : routes[routeId]
+    );
+  };
+
+  // dispatches a custom 'pageloaded' event
+  // that we can use to detect when a given page
+  // has been navigated/loaded 
+  const dispatchLoaded = function (routeId) {
+    const pageloaded = new Event('pageloaded');
+    window.dispatchEvent(pageloaded);
   };
 
   /**
@@ -69,6 +84,16 @@ const router = (function () {
     }
 
     outlet.innerHTML = matchRoute(segment).template;
+    
+    // set loaded page
+    loadedPage = (
+      segment === ''
+      ? 'home'
+      : segment
+    );
+
+
+    dispatchLoaded(segment);
   };
 
   // use the browser's history API to push the

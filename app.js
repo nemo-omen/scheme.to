@@ -8,3 +8,8 @@ const menu = select('nav');
 menuButton.addEventListener('click', function (event) {
    menu.classList.toggle('menu-open');
 });
+
+// listen for custom 'pageloaded' event
+window.addEventListener('pageloaded', function (event) {
+   console.log(event);
+})
