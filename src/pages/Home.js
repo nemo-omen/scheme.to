@@ -1,4 +1,5 @@
-import render from '../util/render.js';
+import {render} from '../util/render.js';
+import {dispatchLoaded} from '../util/dispatchLoaded.js';
 
 const Home = (function () {
    return function (outlet) {
@@ -17,7 +18,8 @@ const Home = (function () {
       </div>`;
             
       render(outlet, template);
-   }
+      dispatchLoaded('home');
+   };
 
 }());
 // const Home = (function () {

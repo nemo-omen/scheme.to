@@ -1,4 +1,5 @@
 import render from '../util/render.js';
+import {dispatchLoaded} from '../util/dispatchLoaded.js';
 
 const Day = (function () {
    return function (outlet) {
@@ -10,7 +11,8 @@ const Day = (function () {
       `;
 
       render(outlet, template);
-   }
+      dispatchLoaded('day');
+   };
 
 }());
 

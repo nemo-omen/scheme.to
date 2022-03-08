@@ -1,4 +1,5 @@
 import render from '../util/render.js';
+import {dispatchLoaded} from '../util/dispatchLoaded.js';
 
 const Month = (function () {
    return function (outlet) {
@@ -9,7 +10,8 @@ const Month = (function () {
    </div>`;
             
       render(outlet, template);
-   }
+      dispatchLoaded('month');
+   };
 
 }());
 

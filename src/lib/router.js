@@ -1,4 +1,3 @@
-import {dispatchLoaded} from '../lib/dispatchLoaded.js';
 import Day from '../pages/Day.js';
 import Home from '../pages/Home.js';
 import Month from '../pages/Month.js';
@@ -99,8 +98,6 @@ const router = (function () {
       // the outlet element.
       matchRoute(segment).page(outlet);
       // matchRoute(segment).mount(outlet);
-
-      dispatchLoaded(segment);
    };
 
    // use the browser's history API to push the

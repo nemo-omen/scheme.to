@@ -5,4 +5,4 @@ const render = function (outlet, template) {
    outlet.appendChild(tpl.content.cloneNode(true));
 };
 
-export default Object.freeze(render);
+export {render};
