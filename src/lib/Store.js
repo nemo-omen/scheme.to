@@ -1,7 +1,7 @@
 const Store = function (initialState) {
    // initialize store members -- allow for an initial state
    // object to be passed in but set to empty object if arg is absent
-   const state = {...initialState} || {};
+   const state = {initialState} ?? {};
 
    // instead of a list of subscribers, we'll create separate lists
    // as properties with keys that match a state property's key
@@ -11,7 +11,7 @@ const Store = function (initialState) {
 
    // keep notify private!
    const notify = function (key, oldState, newState) {
-      if(subscribers.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(subscribers, key)) {
          subscribers[key].forEach((callback) => callback(oldState, newState));
       }
    };
@@ -22,8 +22,8 @@ const Store = function (initialState) {
       // we want to subscribe to
       subscribe: function (key, callback) {
          // if there's no subscription property, add it as an empty array
-         if (!subscribers.hasOwnProperty(key)) {
-            subscribers[key]  = [];
+         if (!Object.prototype.hasOwnProperty.call(subscribers, key)) {
+            subscribers[key] = [];
          }
          // add the given callback to the subscribers array
          // by spreading the original into a new array and adding
@@ -57,4 +57,4 @@ const Store = function (initialState) {
 };
 
 // allow for custom names on import
-export default Store;
+export default Object.freeze(Store);
