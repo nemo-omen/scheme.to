@@ -1,4 +1,4 @@
-import render from '../util/render.js';
+import {render} from '../util/render.js';
 import {dispatchLoaded} from '../util/dispatchLoaded.js';
 
 const Month = (function () {
