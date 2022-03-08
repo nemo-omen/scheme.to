@@ -1,30 +1,34 @@
+import Day from '../pages/Day.js';
 import Home from '../pages/Home.js';
+import Month from '../pages/Month.js';
+import Week from '../pages/Week.js';
+import Year from '../pages/Year.js';
 
 const routes = {
   home: {
     id: '',
     path: '/',
-    template: Home.template
+    mount: Home.mount
   },
   day: {
     id: 'day',
     path: '/day',
-    template: `<h2>Day</h2>`
+    mount: Day.mount
   },
   week: {
     id: 'week',
     path: '/week',
-    template: `<h2>Week</h2>`
+    mount: Week.mount
   },
   month: {
     id: 'month',
     path: '/month',
-    template: `<h2>Month</h2>`
+    mount: Month.mount
   },
   year: {
     id: 'year',
     path: '/year',
-    template: `<h2>Year</h2>`
+    mount: Year.mount
   }
 };
 
@@ -33,27 +37,34 @@ const routes = {
  // @see: https://coryrylan.com/blog/javascript-module-pattern-basics
 const router = (function () {
   let outlet = document.querySelector('main');
-  // keep current loaded page to fire later
-  let loadedPage;
 
-  // convert href string into a URL object and return URL.pathname
-  // so we can avoid getting mired in regex (winning)
+  /**
+   * convert href string into a URL object and return URL.pathname
+   * so we can avoid getting mired in regex (winning!)
+   * @param {string} href href attribute of a link
+   * @returns URL object
+   * @see: https://developer.mozilla.org/en-US/docs/Web/API/URL
+   */
   const getPath = function (href) {
     return new URL(href).pathname;
   };
 
+  /**
+   * Splits a given URL pathName property and returns the last element
+   * @param {string} path  URL pathName property
+   * @returns the last part of the path as a string
+   */
   const segments = function (path) {
     return path.split('/').slice(1);
   };
 
-  // this function will split the given path into an array of path segments
-  // we can use this to match our defined routes in order to provide
-  // the page templates we want to the DOM
+  /**
+   * Matches a route key to a given routeId 
+   * @param {string} routeId  the route id to load
+   * @returns a route object with id, path, and template function
+   * @see: https://www.willtaylor.blog/client-side-routing-in-vanilla-js/
+   */
   const matchRoute = function (routeId) {
-    // console.log('matching: ', path);
-    // naive! -- make this match longer paths!
-    // @see: https://www.willtaylor.blog/client-side-routing-in-vanilla-js/
-    // return routes.find((route) => route.path === `/${routeId}`);
     return (
       routeId === ''
       ? routes.home
@@ -61,11 +72,16 @@ const router = (function () {
     );
   };
 
-  // dispatches a custom 'pageloaded' event
-  // that we can use to detect when a given page
-  // has been navigated/loaded 
+  /**
+   * dispatches a custom 'pageloaded' event
+   * with a detail property of the given routeId
+   * that we can use to detect when a given page
+   * has been navigated/loaded
+   * @param {string} routeId  id of the route being loaded
+   * @see: https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events
+   */
   const dispatchLoaded = function (routeId) {
-    const pageloaded = new Event('pageloaded');
+    const pageloaded = new CustomEvent('pageloaded', {detail: routeId});
     window.dispatchEvent(pageloaded);
   };
 
@@ -83,15 +99,8 @@ const router = (function () {
       segment = options.id;
     }
 
-    outlet.innerHTML = matchRoute(segment).template;
-    
-    // set loaded page
-    loadedPage = (
-      segment === ''
-      ? 'home'
-      : segment
-    );
-
+    // find the route object and call its mount() method
+    matchRoute(segment).mount(outlet);
 
     dispatchLoaded(segment);
   };
@@ -116,9 +125,7 @@ const router = (function () {
   };
 }());
 
-// toggle the menu visibility
-// classes toggled here will only apply
-// visual changes at small screen sizes
+// toggle menu visibility
 const hideMenu = function () {
   const menu = document.querySelector('nav');
   menu.classList.toggle('menu-open');

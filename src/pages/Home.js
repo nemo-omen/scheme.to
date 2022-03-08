@@ -1,3 +1,5 @@
+import render from '../util/render.js';
+
 const Home = (function () {
    const template = `<h2>Overview</h2>
    <div class="hero">
@@ -9,8 +11,13 @@ const Home = (function () {
       </div>
    </div>`;
 
+   const mount = function (outlet) {
+      return render(outlet, template);
+   }
+
    return {
-      template
+      template,
+      mount
    };
 }());
 
