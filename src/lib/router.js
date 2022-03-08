@@ -1,8 +1,10 @@
+import Home from '../pages/Home.js';
+
 const routes = [
   {
     id: '',
     path: '/',
-    template: `<h2>Overview</h2>`,
+    template: Home.template,
   },
   {
     id: 'day',
@@ -140,4 +142,14 @@ window.addEventListener('popstate', function (event) {
     // load home template if not
     router.loadPage({id: ''});
   }
+});
+
+// listen for window load and mount the corresponding template
+// we do this so someone can enter a URL directly rather than 
+// always loading the main html content without a template
+window.addEventListener('DOMContentLoaded', function (event) {
+  // The window.location object has several helpful properties
+  // one of them being href, which we can use to route
+  // to a given template
+  router.loadPage({href: window.location.href});
 });
