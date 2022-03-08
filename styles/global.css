@@ -9,6 +9,12 @@ body {
    color: var(--foreground);
 }
 
+header,
+main,
+footer {
+   margin: 0 auto;
+}
+
 button, a {
    cursor: pointer;
    text-decoration: none;
@@ -53,23 +59,86 @@ a:hover, .header-main-link:hover {
 }
 
 .menu-toggle {
-   transform: translateX(-200%);
+   position: absolute;
+      height: 3rem;
+      width: 3rem;
+      border-radius: 0.5rem 0.5rem 0 0;
+      border: none;
+      border: 1px solid transparent;
+      border-bottom: none;
+      background: var(--foreground);
+      color: var(--background);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      font-size: 2rem;
+      font-weight: 600;
+      transition: color 0.125s ease-in-out,
+                  background-color 0.125s ease-in-out,
+                  border-color 0.125s ease-in-out;
+   transform: translateX(-800%);
+   /* opacity: 0; */
 }
 
 
 /* Media Queries */
 
+/* Narrow screens */
+@media screen and (max-width: 41rem) {
+   header,
+   main,
+   footer {
+      width: 100vw;
+   }
+   .header-inner {
+      flex-direction: column;
+      align-items: center;
+   }
+}
+
+/* Tablet landscape -- narrower */
+@media screen and (max-width: 47rem) {
+   header,
+   main,
+   footer {
+      width: 90vw;
+   }
+}
+
+/* Tablet landscape -- wider */
+@media screen and (min-width: 48rem) {
+   header,
+   main,
+   footer {
+      width: 80vw;
+   }
+}
+
+/* Tablet landscape -- wider*/
+@media screen and (min-width: 64rem) {
+   header,
+   main,
+   footer {
+      width: 75vw;
+   }
+}
+
+/* Desktop monitor -- wider */
+@media screen and (min-width: 80rem) {
+   header,
+   main,
+   footer {
+      width: 70vw;
+   }
+}
+
+/* Max width for horizontal header = 38rem*/
 @media screen and (min-width: 38rem) {
    .header-inner {
       justify-content: space-between;
    }
 }
 
+/* Phones */
 @media screen and (max-width: 25rem) {
-   .header-inner {
-      flex-direction: column;
-      align-items: center;
-   }
    nav {
       position: absolute;
       top: 0;
@@ -101,29 +170,13 @@ a:hover, .header-main-link:hover {
    }
    .menu-item-link {
       font-size: 1.5rem;
-      /* font-weight: bold; */
-      letter-spacing: 0.125em;;
+      letter-spacing: 0.125em;
    }
    .menu-toggle {
-      position: absolute;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
-      height: 3rem;
-      width: 3rem;
-      border-radius: 0.5rem 0.5rem 0 0;
-      border: none;
-      border: 1px solid transparent;
-      border-bottom: none;
-      background: var(--foreground);
-      color: var(--background);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      font-size: 2rem;
-      font-weight: 600;
-      transition: color 0.125s ease-in-out,
-                  background-color 0.125s ease-in-out, 
-                  border-color 0.125s ease-in-out; 
    }
    .menu-toggle:hover {
       color: var(--foreground);
