@@ -65,5 +65,8 @@ const Store = function (initialState) {
    };
 };
 
-// allow for custom names on import
-export default Object.freeze(Store);
+// call the Store function so we have an instance to export
+// this effectively gives us global state managgement
+// that we can use no matter what page is loaded
+const store = Store();
+export {store};

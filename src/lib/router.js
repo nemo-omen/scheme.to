@@ -1,3 +1,4 @@
+import {dispatchLoaded} from '../lib/dispatchLoaded.js';
 import Day from '../pages/Day.js';
 import Home from '../pages/Home.js';
 import Month from '../pages/Month.js';
@@ -8,27 +9,32 @@ const routes = {
    home: {
       id: '',
       path: '/',
-      mount: Home.mount
+      mount: Home.mount,
+      page: Home
    },
    day: {
       id: 'day',
       path: '/day',
-      mount: Day.mount
+      mount: Day.mount,
+      page: Day
    },
    week: {
       id: 'week',
       path: '/week',
-      mount: Week.mount
+      mount: Week.mount,
+      page: Week
    },
    month: {
       id: 'month',
       path: '/month',
-      mount: Month.mount
+      mount: Month.mount,
+      page: Month
    },
    year: {
       id: 'year',
       path: '/year',
-      mount: Year.mount
+      mount: Year.mount,
+      page: Year
    }
 };
 
@@ -74,19 +80,6 @@ const router = (function () {
    };
 
    /**
-    * dispatches a custom 'pageloaded' event
-    * with a detail property of the given routeId
-    * that we can use to detect when a given page
-    * has been navigated/loaded
-    * @param {string} routeId  id of the route being loaded
-    * @see: https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events
-    */
-   const dispatchLoaded = function (routeId) {
-      const pageloaded = new CustomEvent('pageloaded', {detail: routeId});
-      window.dispatchEvent(pageloaded);
-   };
-
-   /**
     * Loads an app's page according to the given href property of an anchor tag
     * or the given id from a popstate event
     * @param {Object} options - Object containing either an href property or an id property
@@ -100,8 +93,12 @@ const router = (function () {
          segment = options.id;
       }
 
-      // find the route object and call its mount() method
-      matchRoute(segment).mount(outlet);
+      // find the given page in the route object
+      // this will return a function with the functionality
+      // needed for the page component to append itself to
+      // the outlet element.
+      matchRoute(segment).page(outlet);
+      // matchRoute(segment).mount(outlet);
 
       dispatchLoaded(segment);
    };
