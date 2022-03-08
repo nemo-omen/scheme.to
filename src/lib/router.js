@@ -133,7 +133,6 @@ const routeListener = (function () {
     hideMenu();
   });
 }());
- 
 
 // popstate listener -- render a specified page template
 // when the user presses the back button
@@ -149,7 +148,7 @@ window.addEventListener('popstate', function (event) {
 });
 
 // listen for window load and mount the corresponding template
-// we do this so someone can enter a URL directly rather than 
+// we do this so someone can enter a URL directly rather than
 // always loading the main html content without a template
 window.addEventListener('DOMContentLoaded', function (event) {
   // The window.location object has several helpful properties
