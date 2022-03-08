@@ -97,7 +97,6 @@ const router = (function () {
       // needed for the page component to append itself to
       // the outlet element.
       matchRoute(segment).page(outlet);
-      // matchRoute(segment).mount(outlet);
    };
 
    // use the browser's history API to push the
