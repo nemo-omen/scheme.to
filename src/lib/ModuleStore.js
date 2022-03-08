@@ -30,7 +30,7 @@ export default {
    // we want to subscribe to
    subscribe: function (key, callback) {
       // if there's no subscription property, add it as an empty array
-      if (!subscribers.hasOwnProperty(key)) {
+      if (!Object.prototype.hasOwnProperty.call(subscribers, key)) {
          subscribers[key]  = [];
       }
       // add the given callback to the subscribers array
@@ -51,7 +51,7 @@ export default {
    },
    remove: function (key) {
       // don't attempt removal if prop dosen't exist
-      if (!state.hasOwnProperty(key)) {
+      if (!Object.prototype.hasOwnProperty.call(state, key)) {
          return;
       }
       // grab the value before deletion
@@ -61,4 +61,4 @@ export default {
       // notify subscribers
       notify(key, oldState, state[key]);
    }
-}
+};

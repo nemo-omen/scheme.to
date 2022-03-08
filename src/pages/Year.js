@@ -8,7 +8,7 @@ const Year = (function () {
 
    const mount = function (outlet) {
       return render(outlet, template);
-   }
+   };
 
    return {
       mount

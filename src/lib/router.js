@@ -137,30 +137,34 @@ const hideMenu = function () {
 // this and call it explicitly. I feel like this will be useful in the future.
 
 const routeListener = (function () {
-   //  listen for all window click events
-   window.addEventListener('click', function (event) {
-      // if a link has a specific data-attribute, it
-      // means we should modify their default behavior
-      // and use our router to deliver dynamic content
-      // rather than navigating to a new location and losing
-      // our aplication state
+   return {
+      listen: function () {
+         //  listen for all window click events
+         window.addEventListener('click', function (event) {
+            // if a link has a specific data-attribute, it
+            // means we should modify their default behavior
+            // and use our router to deliver dynamic content
+            // rather than navigating to a new location and losing
+            // our aplication state
 
-      if (!event.target.matches('[data-route]')) {
-         return;
+            if (!event.target.matches('[data-route]')) {
+               return;
+            }
+
+            // prevent links from navigating away from the page
+            event.preventDefault();
+
+            // send the target element's href to the router
+            router.loadPage({href: event.target.href});
+
+            // set the browser's address bar and history
+            router.setState(event.target.href);
+
+            // hide the navbar menu on mobile devices!
+            hideMenu();
+         });
       }
-
-      // prevent links from navigating away from the page
-      event.preventDefault();
-
-      // send the target element's href to the router
-      router.loadPage({href: event.target.href});
-
-      // set the browser's address bar and history
-      router.setState(event.target.href);
-
-      // hide the navbar menu on mobile devices!
-      hideMenu();
-   });
+   };
 }());
 
 // popstate listener -- render a specified page template

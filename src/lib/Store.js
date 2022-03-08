@@ -1,6 +1,9 @@
 const Store = function (initialState) {
    // initialize store members -- allow for an initial state
    // object to be passed in but set to empty object if arg is absent
+   // --note:  I'm using nullish coalescing here. If initialState is undefined
+   //          the value will be set to an empty object
+   //          @see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
    const state = {initialState} ?? {};
 
    // instead of a list of subscribers, we'll create separate lists
@@ -10,6 +13,12 @@ const Store = function (initialState) {
    const subscribers = {};
 
    // keep notify private!
+   /**
+    * Executes all callback functions for a given set of subscribers
+    * @param {string} key the store value to send notifications for
+    * @param {any} oldState  the stored value before change
+    * @param {any} newState  the stored value after change
+    */
    const notify = function (key, oldState, newState) {
       if (Object.prototype.hasOwnProperty.call(subscribers, key)) {
          subscribers[key].forEach((callback) => callback(oldState, newState));
@@ -43,7 +52,7 @@ const Store = function (initialState) {
       },
       remove: function (key) {
          // don't attempt removal if prop dosen't exist
-         if (!state.hasOwnProperty(key)) {
+         if (!Object.prototype.hasOwnProperty.call(state, key)) {
             return;
          }
          // grab the value before deletion

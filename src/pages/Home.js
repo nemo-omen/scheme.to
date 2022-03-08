@@ -13,7 +13,7 @@ const Home = (function () {
 
    const mount = function (outlet) {
       return render(outlet, template);
-   }
+   };
 
    return {
       template,
