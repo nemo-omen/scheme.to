@@ -117,11 +117,12 @@ a:hover, .header-main-link:hover {
 }
 
 .card-body {
-
+   background-color: var(--primary);
+   gap: 1px;
 }
 
 .agenda-cell {
-   border: 1px solid var(--primary);
+   background-color: var(--background);
 }
 
 /* Utility Classes */
