@@ -120,6 +120,10 @@ a:hover, .header-main-link:hover {
 
 }
 
+.agenda-cell {
+   border: 1px solid var(--primary);
+}
+
 /* Utility Classes */
 .text-large {
    font-size: 3rem;
@@ -128,7 +132,12 @@ a:hover, .header-main-link:hover {
 .text-medium-large {
    font-size: 2.5rem;
 }
-
+.grid {
+   display: grid;
+}
+.grid-four-wide {
+   grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+}
 
 /* Media Queries */
 
