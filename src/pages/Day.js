@@ -10,7 +10,10 @@ const Day = (function () {
          </div>
       `;
 
+      // mount the above template to the parent node
       render(outlet, template);
+
+      // dispatch pageLoaded event
       dispatchLoaded('day');
    };
 

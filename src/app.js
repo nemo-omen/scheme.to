@@ -1,9 +1,9 @@
-import {select} from './src/util/domUtils.js';
+import {select} from './util/domUtils.js';
 // routeListener is an IIFE that attaches a DOMContentLoaded
 // listener to the window
-import routeListener from './src/lib/router.js';
+import routeListener from './lib/router.js';
 
-import {store} from './src/lib/Store.js';
+import {store} from './lib/Store.js';
 
 const menuButton = select('.menu-toggle');
 const menu = select('nav');
