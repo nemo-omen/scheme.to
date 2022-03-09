@@ -110,12 +110,6 @@ const router = (function () {
    };
 }());
 
-// toggle menu visibility
-const hideMenu = function () {
-   const menu = document.querySelector('nav');
-   menu.classList.toggle('menu-open');
-};
-
 // route listener
 //  I'm naming and exporting this as an IIFE so that:
 // a) I can keep this logic in a separate file
@@ -154,6 +148,13 @@ const routeListener = (function () {
       }
    };
 }());
+
+
+// toggle menu visibility
+const hideMenu = function () {
+  const menu = document.querySelector('nav');
+  menu.classList.toggle('menu-open');
+};
 
 // popstate listener -- render a specified page template
 // when the user presses the back button
