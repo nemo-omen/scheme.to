@@ -20,9 +20,9 @@ All JavaScript is located in the `/src` directory at the root of the project. Th
 #### Router
 The router consists of two functions thhat work together to render specific DOM content when the user navigates — `router` and `routeListener`.
 
-`routeListener` simply attaches an `eventListener` to the `window` object. The handler then intercepts all `click` events on the `window` and filters out any not made on a link with the data attribute `data-route`. The event handler then prevents the default behavior of a link before calling the router's `loadPage` method and setting the `loadedPage` property to the `id` of the clicked link.
+`routeListener` simply attaches an `eventListener` to the `window` object. The handler then intercepts all `click` events on the `window` and filters out any not made on a link with the data attribute `data-route`. The event handler then prevents the default behavior of a link before calling the router's `loadPage` method and calling a function to send the URL to the location bar via `window.pushState`.
 
-   > __NOTE:__ The logic for calling `router.setState()` and `hideMenu()` should be moved out of `routeListener` so we can ensure the new page is actually loaded. Currenty, these calls assume the page successfully loaded from within the scope of the `routeListener` handler. I feel like this listener is doing too much. _Maybe they need to be moved into the router or be set somewhere separate_.
+   > __NOTE:__ The logic for calling `setState()` and `hideMenu()` should be moved out of `routeListener` so we can ensure the new page is actually loaded. Currenty, these calls assume the page successfully loaded from within the scope of the `routeListener` handler. I feel like this listener is doing too much. _Maybe they need to be moved into the router or be set somewhere separate_.
 
 #### Pages
 Pages are individual JavaScript functions that mount HTML elements, along with relevant data, to the DOM. Each page handles its own DOM manipulation and will dispatch a custom `pageLoaded` event when it has finished mounting to the DOM. Pages are located in `/src/pages`.
