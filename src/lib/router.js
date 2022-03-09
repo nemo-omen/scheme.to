@@ -8,31 +8,26 @@ const routes = {
    home: {
       id: '',
       path: '/',
-      mount: Home.mount,
       page: Home
    },
    day: {
       id: 'day',
       path: '/day',
-      mount: Day.mount,
       page: Day
    },
    week: {
       id: 'week',
       path: '/week',
-      mount: Week.mount,
       page: Week
    },
    month: {
       id: 'month',
       path: '/month',
-      mount: Month.mount,
       page: Month
    },
    year: {
       id: 'year',
       path: '/year',
-      mount: Year.mount,
       page: Year
    }
 };

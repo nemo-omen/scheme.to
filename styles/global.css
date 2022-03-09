@@ -24,6 +24,8 @@ a:hover, .header-main-link:hover {
    text-decoration: underline;
 }
 
+/* HEADER */
+
 .header-inner {
    display: flex;
    align-items: baseline;
@@ -51,27 +53,20 @@ a:hover, .header-main-link:hover {
    padding: 0;
 }
 
-.hero {
-   display: flex;
-   flex-direction: column;
-   gap: 2rem;
-}
-
-.hero-card {
-   border: 1px solid var(--primary);
-}
-
-.hero-card h3 {
-   background: var(--primary);
-   padding: 0.5rem;
-   margin: 0;
-}
-
 .menu-item-link {
    background: transparent;
    border: none;
    padding: 1rem;
    font-size: 1.125rem;
+}
+
+.menu-rule {
+   margin: 0 1rem;
+   opacity: 0;
+   display: none;
+   border: none;
+   height: 2px;
+   background-color: var(--primary);
 }
 
 .menu-toggle {
@@ -91,7 +86,47 @@ a:hover, .header-main-link:hover {
                   background-color 0.125s ease-in-out,
                   border-color 0.125s ease-in-out;
    transform: translateX(-800%);
-   /* opacity: 0; */
+}
+
+/* MAIN CONTENT */
+
+.page > * + * {
+   margin-top: 4rem;
+}
+
+.hero {
+   display: flex;
+   flex-direction: column;
+}
+
+.hero-card {
+   border: 1px solid var(--primary);
+}
+
+.card-header {
+   background: var(--primary);
+   padding: 0.5rem;
+}
+
+.card-header h3 {
+   margin: 0;
+}
+
+.card-header time {
+   margin-inline: 0.5rem;
+}
+
+.card-body {
+
+}
+
+/* Utility Classes */
+.text-large {
+   font-size: 3rem;
+}
+
+.text-medium-large {
+   font-size: 2.5rem;
 }
 
 
@@ -111,7 +146,7 @@ a:hover, .header-main-link:hover {
 }
 
 /* Tablet landscape -- narrower */
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 51rem) {
    header,
    main,
    footer {
@@ -120,7 +155,7 @@ a:hover, .header-main-link:hover {
 }
 
 /* Tablet landscape -- wider */
-@media screen and (min-width: 48rem) {
+@media screen and (min-width: 51rem) {
    header,
    main,
    footer {
@@ -135,7 +170,7 @@ a:hover, .header-main-link:hover {
    }
 }
 
-/* Tablet landscape -- wider*/
+/* Tablet landscape -- wider than */
 @media screen and (min-width: 64rem) {
    header,
    main,
@@ -144,7 +179,7 @@ a:hover, .header-main-link:hover {
    }
 }
 
-/* Desktop monitor -- wider */
+/* Desktop monitor -- wider than */
 @media screen and (min-width: 80rem) {
    header,
    main,
@@ -154,14 +189,14 @@ a:hover, .header-main-link:hover {
 }
 
 /* Max width for horizontal header = 38rem*/
-@media screen and (min-width: 38rem) {
+@media screen and (min-width: 45rem) {
    .header-inner {
       justify-content: space-between;
    }
 }
 
 /* Phones */
-@media screen and (max-width: 25rem) {
+@media screen and (max-width: 30rem) {
    nav {
       position: absolute;
       top: 0;
@@ -205,5 +240,11 @@ a:hover, .header-main-link:hover {
       color: var(--foreground);
       background: var(--background);
       border-color: var(--foreground);
+   }
+   .menu-rule {
+      display: block;
+      opacity: 1;
+      margin: 0 25vw;
+      margin-top: 2rem;
    }
 }

@@ -9,11 +9,21 @@ const Home = (function () {
       <h2>Overview</h2>
          <div class="hero">
             <div class="hero-card">
-               <h3>Today</h3>
+               <div class="card-header">
+                  <h3 class="text-large">Today</h3>
+                  <time>${new Date().toLocaleString()}</time>
+               </div>
+               <div class="card-body">
+                  <h4>Agenda View</h4>
+               </div>
             </div>
-            <div class="hero-card">
-               <h3>Coming Up</h3>
+         </div>
+         <div class="hero">
+         <div class="hero-card">
+            <div class="card-header">
+               <h3 class="text-medium-large">Coming Up</h3>
             </div>
+         </div>
          </div>
       </div>`;
 
