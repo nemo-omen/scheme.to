@@ -13,7 +13,9 @@ const Home = (function () {
                   <h3 class="text-large">Today</h3>
                   <time>${new Date().toLocaleString('en-US', {month: 'long', year: 'numeric', day: 'numeric', weekday: 'long'})}</time>
                </div>
-               <div class="card-body"></div>
+               <div class="card-body">
+               <!-- Make this a stack of half-hour increments that scrolls over a 24-hour period -->
+               </div>
             </div>
          </div>
          <div class="hero">

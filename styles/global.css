@@ -123,6 +123,8 @@ a:hover, .header-main-link:hover {
 
 .agenda-cell {
    background-color: var(--background);
+   aspect-ratio: 1;
+   padding: 0.5rem;
 }
 
 /* Utility Classes */
@@ -152,6 +154,9 @@ a:hover, .header-main-link:hover {
    .header-inner {
       flex-direction: column;
       align-items: center;
+   }
+   .agenda-cell {
+      aspect-ratio: 4 / 2;
    }
 }
 
@@ -198,7 +203,7 @@ a:hover, .header-main-link:hover {
    }
 }
 
-/* Max width for horizontal header = 38rem*/
+/* Max width for horizontal header = 45rem*/
 @media screen and (min-width: 45rem) {
    .header-inner {
       justify-content: space-between;
