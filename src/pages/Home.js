@@ -30,20 +30,11 @@ const Home = (function () {
                   <div class="agenda-day agenda-cell">
                      <h4>Monday</h4>
                   </div>
-                  <div class="agenda-day agenda-cell">
-                     <h4>Tuesday</h4>
+                  <div class="agenda-day agenda-callout agenda-cell">
+                     <h4>See the week in detail</h4>
                   </div>
-                  <div class="agenda-day agenda-cell">
-                     <h4>Wednesday</h4>
-                  </div>
-                  <div class="agenda-day agenda-cell">
-                     <h4>Thursday</h4>
-                  </div>
-                  <div class="agenda-day agenda-cell">
-                     <h4>Friday</h4>
-                  </div>
-                  <div class="agenda-day agenda-cell">
-                     <h4>Saturday</h4>
+                  <div class="agenda-day agenda-callout agenda-cell">
+                     <h4>See the whole month</h4>
                   </div>
                </div>
          </div>

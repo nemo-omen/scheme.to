@@ -127,6 +127,14 @@ a:hover, .header-main-link:hover {
    padding: 0.5rem;
 }
 
+.agenda-callout {
+   color: var(--accent);
+   background: var(--background);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 /* Utility Classes */
 .text-large {
    font-size: 3rem;
@@ -158,6 +166,10 @@ a:hover, .header-main-link:hover {
    .agenda-cell {
       aspect-ratio: 4 / 2;
    }
+   .agenda-callout {
+      grid-column: span 1;
+      background: tomato;
+   }
 }
 
 /* Tablet landscape -- narrower */
@@ -186,7 +198,7 @@ a:hover, .header-main-link:hover {
 }
 
 /* Tablet landscape -- wider than */
-@media screen and (min-width: 64rem) {
+@media screen and (min-width: 63rem) {
    header,
    main,
    footer {
