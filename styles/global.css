@@ -135,6 +135,10 @@ a:hover, .header-main-link:hover {
    align-items: center;
 }
 
+.planner-header {
+   display: flex;
+}
+
 /* Utility Classes */
 .text-large {
    font-size: 3rem;
