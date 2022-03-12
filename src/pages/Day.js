@@ -10,19 +10,19 @@ const Day = (function () {
 
                <div class="planner-header-section planner-meta">
                   <fieldset>
-                     <legend id="name-label">Project:</legend>
-                     <input type="text" id="name-input" aria-labelledby="name-label"/>
+                     <label class="order-2" id="name-label">Project:</label>
+                     <input class="order-1" type="text" id="name-input" aria-labelledby="name-label"/>
                   </fieldset>
                   <fieldset>
-                     <legend id="start-date-label">Start Date:</legend>
-                     <input type="text" id="start-date-input" aria-labelledby="start-date-label"/>
+                     <label class="order-2" id="start-date-label">Start Date:</label>
+                     <input class="order-1" type="text" id="start-date-input" aria-labelledby="start-date-label"/>
                   </fieldset>
                   <fieldset>
-                     <legend id="due-date-label">Due Date:</legend>
-                     <input type="text" id="due-date-input" aria-labelledby="due-date-label"/>
+                     <label class="order-2" id="due-date-label">Due Date:</label>
+                     <input class="order-1" type="text" id="due-date-input" aria-labelledby="due-date-label"/>
                   </fieldset>
                   <fieldset>
-                     <legend id="status-input-label">Status:</legend>
+                     <label id="status-input-label" for="status-input">Status:</label>
                      <select id="status-input" aria-labelledby="status-input-label">
                         <option value="">Set Status</option>
                         <option value="planning">Planning</option>
@@ -36,10 +36,19 @@ const Day = (function () {
 
                <div class="planner-header-section">
                   <fieldset>
-                     <legend id="goals-label">Goals:</legend>
-                     <input type="text" id="goal-1-input"/>
-                     <button>+</button>
+                     <label class="order-2" for="goal-1-imput" id="goal-1-label">Goal 1:</label>
+                     <input class="order-1" type="text" id="goal-1-input"/>
                   </fieldset>
+                  
+                  <fieldset>
+                     <label class="order-2" for="goal-2-imput" id="goal-2-label">Goal 2:</label>
+                     <input class="order-1" type="text" id="goal-2-input"/>
+                  </fieldset>
+                  <fieldset>
+                     <label class="order-2" for="goal-3-imput" id="goal-3-label">Goal 3:</label>
+                     <input class="order-1" type="text" id="goal-3-input"/>
+                  </fieldset>
+                  
                </div>
 
             </div>

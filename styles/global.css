@@ -1,5 +1,5 @@
 :root {
-   font-family: 'Atkinson Hyperlegible';
+   font-family: "Atkinson Hyperlegible", sans-serif;
 }
 
 html,
@@ -15,12 +15,21 @@ footer {
    margin: 0 auto;
 }
 
-button, a {
+header {
+   margin-top: 2rem;
+}
+
+main {
+   margin-top: 4rem;
+}
+
+button,
+a {
    cursor: pointer;
    text-decoration: none;
 }
 
-a:hover, .header-main-link:hover {
+a:hover {
    text-decoration: underline;
 }
 
@@ -38,6 +47,10 @@ a:hover, .header-main-link:hover {
    margin: 0;
    padding: 0;
    line-height: 1;
+}
+
+.header-main-link:hover {
+   text-decoration: underline;
 }
 
 .header-main-link a {
@@ -71,21 +84,48 @@ a:hover, .header-main-link:hover {
 
 .menu-toggle {
    position: absolute;
-      height: 3rem;
-      width: 3rem;
-      border-radius: 0.5rem 0.5rem 0 0;
-      border: none;
-      border: 1px solid transparent;
-      border-bottom: none;
-      background: var(--foreground);
-      color: var(--background);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      font-size: 2rem;
-      font-weight: 600;
-      transition: color 0.125s ease-in-out,
-                  background-color 0.125s ease-in-out,
-                  border-color 0.125s ease-in-out;
+   height: 3rem;
+   width: 3rem;
+   border-radius: 0.5rem 0.5rem 0 0;
+   border: none;
+   border: 1px solid transparent;
+   border-bottom: none;
+   background: var(--foreground);
+   color: var(--background);
+   box-shadow: 0 0 30px rgb(0 0 0 30%);
+   font-size: 2rem;
+   font-weight: 600;
+   transition: color 0.125s ease-in-out, background-color 0.125s ease-in-out, border-color 0.125s ease-in-out;
    transform: translateX(-800%);
+}
+
+fieldset {
+   border: none;
+}
+
+input {
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   font-size: 1.5rem;
+   border: none;
+   background: var(--background);
+   border-bottom: 1px solid var(--foreground);
+}
+
+input:focus {
+   outline: 1px solid var(--primary);
+   border-bottom: 1px solid var(--primary);
+}
+
+/*
+   Applies only to fieldsets with a focused child element
+   - this is so color of label matches the color of the
+   outline and border of input:focus
+   @see: https://nikitahl.com/css-select-previous-element (near bottom of the post: "The last tip,"
+*/
+fieldset:focus-within label {
+   color: var(--primary);
 }
 
 /* MAIN CONTENT */
@@ -136,7 +176,23 @@ a:hover, .header-main-link:hover {
 }
 
 .planner-header {
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 2rem;
+}
+
+.grid-header-section {
+   min-height: 100%;
+}
+
+.planner-header-section fieldset {
    display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
+}
+
+.field-stack input:not(:first-of-type) {
+   padding-top: 1rem;
 }
 
 /* Utility Classes */
@@ -147,11 +203,30 @@ a:hover, .header-main-link:hover {
 .text-medium-large {
    font-size: 2.5rem;
 }
+
 .grid {
    display: grid;
 }
+
 .grid-four-wide {
-   grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.sr-only {
+   width: 1px;
+   height: 1px;
+   opacity: 0;
+   position: absolute;
+   left: -1000px;
+   overflow: hidden;
+}
+
+.order-1 {
+   order: 1;
+}
+
+.order-2 {
+   order: 2;
 }
 
 /* Media Queries */
@@ -163,13 +238,16 @@ a:hover, .header-main-link:hover {
    footer {
       width: 100vw;
    }
+
    .header-inner {
       flex-direction: column;
       align-items: center;
    }
+
    .agenda-cell {
       aspect-ratio: 4 / 2;
    }
+
    .agenda-callout {
       grid-column: span 1;
       background: tomato;
@@ -192,6 +270,7 @@ a:hover, .header-main-link:hover {
    footer {
       width: 80vw;
    }
+
    .hero {
       flex-direction: row;
    }
@@ -219,7 +298,7 @@ a:hover, .header-main-link:hover {
    }
 }
 
-/* Max width for horizontal header = 45rem*/
+/* Max width for horizontal header = 45rem */
 @media screen and (min-width: 45rem) {
    .header-inner {
       justify-content: space-between;
@@ -240,38 +319,45 @@ a:hover, .header-main-link:hover {
       transform: translateX(-100%);
       transition: all 0.2s ease-out;
       opacity: 0;
-      box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
+      box-shadow: 5px 0 20px rgb(0 0 0 20%);
    }
+
    .menu-open {
       transform: translateX(0);
       opacity: 1;
    }
+
    .header-menu {
       height: 100%;
       flex-direction: column;
       justify-content: center;
       gap: 2rem;
    }
+
    .menu-item {
       align-self: stretch;
       min-width: 100%;
       text-align: center;
    }
+
    .menu-item-link {
       font-size: 1.5rem;
       letter-spacing: 0.125em;
    }
+
    .menu-toggle {
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
    }
+
    .menu-toggle:hover {
       color: var(--foreground);
       background: var(--background);
       border-color: var(--foreground);
    }
+
    .menu-rule {
       display: block;
       opacity: 1;
