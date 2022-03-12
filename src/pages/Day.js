@@ -1,5 +1,6 @@
 import {render} from '../util/render.js';
 import {dispatchLoaded} from '../util/dispatchLoaded.js';
+import {Tag} from '../components/Tag.js';
 
 const Day = (function () {
    return function (outlet) {
@@ -61,7 +62,7 @@ const Day = (function () {
                         <div class="flex-row tags-group order-2">
                         <label class="order-1" for="tags-input" id="tags-label">Tags</label>
                            <div id="tags-output" class="order-2">
-                              ${tags.map((tag) => `<div class="tag"><span class="tag-text">${tag}</span><button class="tag-button">x</button></div>`).join(',').replaceAll(',', '')}
+                              ${tags.map((tag) => Tag(tag)).join(',').replaceAll(',', '')}
                            </div>
                         </div>
                         <input type="text" id="tags-input" class="order-1" name="tags-input" />
@@ -95,6 +96,21 @@ const Day = (function () {
 
       // dispatch pageLoaded event
       dispatchLoaded('day');
+
+      const tagNodes = Array.from(document.querySelectorAll('.tag-text'));
+      const tagButtons = Array.from(document.querySelectorAll('.tag-button'));
+      
+      tagNodes.forEach(function (node) {
+         node.addEventListener('click', function (event) {
+            console.log(event);
+         });
+      });
+
+      tagButtons.forEach(function (tagButton) {
+         tagButton.addEventListener('click', function (event) {
+            console.log(event);
+         });
+      });
    };
 
 }());
