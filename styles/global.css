@@ -142,6 +142,12 @@ fieldset:focus-within label {
    color: var(--focus);
 }
 
+summary h2,
+summary h3,
+summary h4 {
+   display: inline;
+}
+
 /* MAIN CONTENT */
 
 .page > * + * {
@@ -189,7 +195,8 @@ fieldset:focus-within label {
    align-items: center;
 }
 
-.planner-header {
+.planner-header,
+.planner-body {
    display: grid;
    gap: 2rem;
 
@@ -202,7 +209,7 @@ fieldset:focus-within label {
 }
 
 /* ensure fieldsets within the planner header are columns */
-.planner-header-section fieldset {
+.planner-column fieldset {
    display: flex;
    flex-direction: column;
    gap: 0.25rem;
