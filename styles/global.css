@@ -40,6 +40,12 @@ a:hover {
    text-decoration: underline;
 }
 
+:focus {
+   outline: 1px dashed var(--gray-1);
+   outline-offset: 0.25rem;
+   background-color: var(--gray-8);
+}
+
 /* HEADER */
 
 .header-inner {
@@ -118,11 +124,19 @@ input {
    border: none;
    background: var(--background);
    border-bottom: 1px solid var(--blur);
-   padding: 0.125rem;
+   padding: 0.125rem 0;
 }
 
-input:focus {
-   outline: 1px dashed var(--gray-1);
+select {
+   font-size: 1.5rem;
+   border: none;
+   background: var(--background);
+   border-bottom: 1px solid var(--blur);
+   padding: 0.125rem 0;
+}
+
+input:focus,
+select:focus {
    outline-offset: -1px;
    border-bottom: 1px solid var(--focus);
 }
@@ -142,9 +156,11 @@ fieldset:focus-within label {
    color: var(--focus);
 }
 
-summary h2,
-summary h3,
-summary h4 {
+details summary {
+   cursor: pointer;
+}
+
+details summary > * {
    display: inline;
 }
 
@@ -219,6 +235,48 @@ summary h4 {
    padding-top: 1rem;
 }
 
+.tags-group {
+   justify-content: space-between;
+   gap: 2rem;
+}
+
+#tags-output {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1rem;
+}
+
+.tag {
+   font-size: 1rem;
+   display: flex;
+   overflow: hidden;
+   border: 1px solid var(--primary);
+   color: var(--primary);
+   border-radius: 0.25rem;
+}
+
+.tag:hover {
+   border-color: var(--hover);
+   color: var(--hover);
+}
+
+.tag-text {
+   display: inline-block;
+   padding: 0.125rem 0.25rem;
+   cursor: pointer;
+}
+
+.tag button {
+   border: none;
+   border-left: 1px solid var(--primary);
+   background: var(--background);
+   color: var(--primary);
+}
+
+.tag button:hover {
+   color: var(--hover);
+}
+
 /* Utility Classes */
 .text-large {
    font-size: 3rem;
@@ -230,6 +288,18 @@ summary h4 {
 
 .grid {
    display: grid;
+}
+
+.flex-row {
+   display: flex;
+}
+
+.flex-column {
+   flex-direction: column;
+}
+
+.flex-wrap {
+   flex-wrap: wrap;
 }
 
 .grid-four-wide {

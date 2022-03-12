@@ -3,7 +3,7 @@ import {dispatchLoaded} from '../util/dispatchLoaded.js';
 
 const Day = (function () {
    return function (outlet) {
-      
+      const tags = ['Tag', 'Something', 'Now', 'We', 'Add'];
       const template = `
          <div class="page planner-page" id="planner">
             <div class="planner-header">
@@ -28,7 +28,7 @@ const Day = (function () {
                      <fieldset>
                         <label class="order-2" id="status-input-label" for="status-input">Status:</label>
                         <select class="order-1" id="status-input" aria-labelledby="status-input-label">
-                           <option value="">Set Status</option>
+                           <option value=""></option>
                            <option value="planning">Planning</option>
                            <option value="working">Working</option>
                            <option value="waiting">Waiting For</option>
@@ -45,17 +45,26 @@ const Day = (function () {
                         <h2>Project Goals</h2>
                      </summary>
                      <fieldset>
-                        <label class="order-2" for="goal-1-input" id="goal-1-label">Goal 1:</label>
+                        <label class="order-2" for="goal-1-input" id="goal-1-label">Goal 1</label>
                         <input class="order-1" type="text" id="goal-1-input"/>
                      </fieldset>
                      
                      <fieldset>
-                        <label class="order-2" for="goal-2-input" id="goal-2-label">Goal 2:</label>
+                        <label class="order-2" for="goal-2-input" id="goal-2-label">Goal 2</label>
                         <input class="order-1" type="text" id="goal-2-input"/>
                      </fieldset>
                      <fieldset>
-                        <label class="order-2" for="goal-3-input" id="goal-3-label">Goal 3:</label>
+                        <label class="order-2" for="goal-3-input" id="goal-3-label">Goal 3</label>
                         <input class="order-1" type="text" id="goal-3-input"/>
+                     </fieldset>
+                     <fieldset>
+                        <div class="flex-row tags-group order-2">
+                        <label class="order-1" for="tags-input" id="tags-label">Tags</label>
+                           <div id="tags-output" class="order-2">
+                              ${tags.map((tag) => `<div class="tag"><span class="tag-text">${tag}</span><button class="tag-button">x</button></div>`).join(',').replaceAll(',', '')}
+                           </div>
+                        </div>
+                        <input type="text" id="tags-input" class="order-1" name="tags-input" />
                      </fieldset>
                   </details>
                </div>
