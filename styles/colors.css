@@ -1,25 +1,53 @@
 :root {
-   /* CSS HSL */
-   --rich-black-fogra-29: hsla(207, 90%, 4%, 1);
-   --tart-orange: hsla(0, 99%, 64%, 1);
-   --heliotrope: hsla(284, 100%, 72%, 1);
-   --portland-orange: hsla(10, 97%, 59%, 1);
-   --snow: hsla(15, 50%, 97%, 1);
-   --blue-ncs: hsla(195, 100%, 39%, 1);
-   --pacific-blue: hsla(187, 66%, 48%);
+   /* CSS HSL Base Colors */
+   --black: hsl(180deg 5% 4%);
+   --snow: hsl(15deg 50% 97%);
+   --tart-orange: hsl(0deg 99% 64%);
+   --heliotrope: hsl(284deg 100% 72%);
+   --portland-orange: hsl(10deg 97% 59%);
+   --blue-ncs: hsl(195deg 100% 39%);
+   --pacific-blue: hsl(187deg 66% 48%);
 
+   /* CSS HSL Color Levels:
+      This makes it easier to use variations of a color
+      without having to calculate or look up values
+   */
+
+   /* black */
+   --black-10: hsl(180deg 5% 40%);
+   --black-9: hsl(180deg 5% 36%);
+   --black-8: hsl(180deg 5% 32%);
+   --black-7: hsl(180deg 5% 28%);
+   --black-6: hsl(180deg 5% 24%);
+   --black-5: hsl(180deg 5% 20%);
+   --black-4: hsl(180deg 5% 16%);
+   --black-3: hsl(180deg 5% 12%);
+   --black-2: hsl(180deg 5% 8%);
+   --black-1: var(--black);
+   --black-0: hsl(180deg 5% 0%);
+
+   /* gray */
+   --gray-10: hsl(180deg 5% 100%);
+   --gray-9: hsl(180deg 5% 95%);
+   --gray-8: hsl(180deg 5% 90%);
+   --gray-7: hsl(180deg 5% 85%);
+   --gray-6: hsl(180deg 5% 80%);
+   --gray-5: hsl(180deg 5% 75%);
+   --gray-4: hsl(180deg 5% 70%);
+   --gray-3: hsl(180deg 5% 65%);
+   --gray-2: hsl(180deg 5% 60%);
+   --gray-1: hsl(180deg 5% 55%);
+   --gray-0: hsl(180deg 5% 50%);
+
+   /* Color Aliases */
    --background: var(--snow);
-   --foreground: var(--rich-black-fogra-29);
+   --foreground: var(--black);
    --accent: var(--heliotrope);
-   /* --accent: var(--portland-orange); */
    --primary: var(--pacific-blue);
-
    --link: var(--primary);
    --hover: var(--accent);
-}
-
-[href] {
-   color: currentColor;
+   --blur: var(--black-6);
+   --focus: var(--black-0);
 }
 
 /* [href]:hover {
@@ -34,5 +62,3 @@
       --primary: var(--heliotrope);
    }
 } */
-
-
