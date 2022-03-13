@@ -158,6 +158,13 @@ fieldset:focus-within label {
 
 details summary {
    cursor: pointer;
+   background: var(--foreground);
+   color: var(--background);
+   padding: 0.5rem;
+}
+
+details summary:focus {
+   background: var(--foreground);
 }
 
 details summary > * {

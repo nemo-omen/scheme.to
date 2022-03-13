@@ -157,6 +157,22 @@ const Day = (function () {
          console.log(project);
       };
 
+      const removeTag = function (tagId) {
+         console.log({tagId});
+         const tagNodes = Array.from(document.querySelectorAll('.tag'));
+         const target = tagNodes.filter(function (node) {
+            return node.id === tagId;
+         });
+
+         if (target !== undefined) {
+            target.parentNode.removeChild(target);
+         }
+
+         project.tags = project.tags.filter(function (tag) {
+            return tag.id !== tagId;
+         });
+      };
+
       nameInput.addEventListener('change', function (event) {
          setProjectName(event.target.value);
       });
@@ -193,8 +209,10 @@ const Day = (function () {
       });
 
       tagButtons.forEach(function (tagButton) {
+         console.log(tagButton);
          tagButton.addEventListener('click', function (event) {
             console.log(event.target.dataset.tagId);
+            removeTag(event.target.dataset.tagId);
          });
       });
 
