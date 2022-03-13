@@ -1,19 +1,21 @@
+import {shortId} from '../util/shortId.js';
+
 const Tag = (function() {
-
-   // generate a "random" id
-   const id =  function () {
-      return Math.random().toString(36).substr(2, 6);
-   };
-
    return function(text) {
+      const tagId = shortId();
+
       const template = `
-      <div class="tag" id="tag-${id()}">
-         <span class="tag-text">${text}</span>
-         <button class="tag-button">x</button>
+      <div class="tag" id="${tagId}">
+         <span class="tag-text" data-tag-id="${tagId}">${text}</span>
+         <button class="tag-button" data-tag-id="${tagId}">x</button>
       </div>
       `;
 
-      return template;
+      return {
+         template,
+         id: tagId,
+         text
+      };
    };
 }());
 
