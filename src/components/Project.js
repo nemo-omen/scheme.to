@@ -60,7 +60,7 @@ const Project = (function (){
                   <div class="flex-row tags-group order-2">
                      <label class="order-1" for="tags-input" id="tags-label">Tags</label>
                      <div id="tags-output" class="order-2">
-                        ${project.tags.forEach((tag) => Tag(tag))}
+                        ${project.tags.map((tag) => Tag(tag).template).join(',', '').replaceAll(',', '')}
                      </div>
                   </div>
                   <input type="text" id="tags-input" class="order-1" name="tags-input" />

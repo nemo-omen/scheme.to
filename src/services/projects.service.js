@@ -51,7 +51,7 @@ let defaultProject = {
       3: '',
       4: ''
    },
-   tags: [],
+   tags: ['Getting Started', 'Big Dreams'],
    notes: [],
    steps: []
 }
