@@ -1,21 +1,29 @@
 import {select} from './util/domUtils.js';
 import {ProjectService} from './services/projects.service.js';
-// import routeListener from './lib/router.js';
-// import {store} from './lib/Store.js';
+import {store} from './lib/Store.js';
+import routeListener from './lib/router.js';
 
 
 let projects = [];
-const projectsDropdown = document.getElementById('projects-dropdown');
 const projectsMenu = document.getElementById('projects-menu');
 const menuButton = select('.menu-toggle');
 const sidebar = document.querySelector('.sidebar');
 
-// routeListener.listen();
+routeListener.listen();
+
+const loadProjects = function () {
+   projects = ProjectService.getAll();
+   
+   if (projects.length > 0) {
+      projects.forEach((project) => insertProjectLink(project));
+      store.set('projects', [...projects]);
+   }
+};
 
 const insertProjectLink = function (project) {
    const template = `
       <li class="menu-item">
-         <a class="menu-item-link" href="/projects/${project.slug}">${project.title}</a>
+         <a class="menu-item-link" href="/${project.slug}" data-route>${project.title}</a>
       </li>
    `;
 
@@ -27,13 +35,7 @@ menuButton.addEventListener('click', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-   projects = ProjectService.getAll();
-   
-   if (projects.length > 0) {
-      console.log(projects);
-      projects.forEach((project) => insertProjectLink(project));
-
-   }
+   loadProjects();
 });
 
 // listen for custom 'pageloaded' event

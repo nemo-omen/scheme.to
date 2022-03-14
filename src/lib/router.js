@@ -1,3 +1,5 @@
+import {store} from './Store.js';
+import {Project} from '../components/Project.js';
 
 // Here's what needs to happen:
 // instead of the router loading preexisting pages, we need to
@@ -17,6 +19,7 @@
 // with this little router.
 // @see: https://coryrylan.com/blog/javascript-module-pattern-basics
 const router = (function () {
+   const outlet = document.getElementById('planner');
    /**
     * convert href string into a URL object and return URL.pathname
     * so we can avoid getting mired in regex (winning!)
@@ -34,7 +37,7 @@ const router = (function () {
     * @returns the last part of the path as a string
     */
    const getLastSegment = function (path) {
-      return path.split('/').slice(1);
+      return path.split('/').slice(1)[0];
    };
 
    // use the browser's history API to push the
@@ -47,12 +50,26 @@ const router = (function () {
       history.pushState({id: pathId}, `Scheme.to | ${title}`, href);
    };
 
-   const getData = function (pathSegment) {
+   const getProjectData = function (pathSegment) {
+      const projects = store.get('projects');
+      // todo: if pathSegment === '', load lastProject
 
+      if (projects.length > 0) {
+         const project =  projects.find((proj) => proj.slug === pathSegment);
+         return project;
+      }
+   };
+
+   const loadPage = function (href) {
+      const pathSegment = getLastSegment(getPath(href));
+      const data = getProjectData(pathSegment);
+      console.log(data);
+      return Project(outlet, data);
    };
 
    return {
-      setState
+      setState,
+      loadPage
    };
 }());
 
@@ -76,7 +93,7 @@ const routeListener = (function () {
             event.preventDefault();
 
             // send the target element's href to the router
-            router.loadPage({href: event.target.href});
+            router.loadPage(event.target.href);
 
             // set the browser's address bar and history
             router.setState(event.target.href);
@@ -115,7 +132,7 @@ window.addEventListener('DOMContentLoaded', function () {
    // The window.location object has several helpful properties
    // one of them being href, which we can use to route
    // to a given template
-   router.loadPage({href: window.location.href});
+   router.loadPage(window.location.href);
 });
 
 export default Object.freeze(routeListener);

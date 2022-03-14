@@ -1,38 +1,3 @@
-/**
- * @typedef {Object} project
- * @property {string} title - Title of the project
- * @property {string} slug - The slug of the project — the last segment of the URL where the 
- *                           project will be located. Must be unique!
- * @property {string} startDate - String representation of the starting date for the project
- *                                format: mm/dd/yyyy
- * @property {string} dueDate - String representation of the due date for the project
- *                              format: mm/dd/yyyy
- * @property {string} status - The status of the project
- * @property {Object<number, string>} goals - Goals for the project. 
- *                                            key: goal number, 
- *                                            val: Goal string description
- * @property {Array<Object>} notes - Array of Note objects associated with this project
- * @property {Array<Object>} steps - Array of Step objects associated with this project
- *                                   note: it might be better to make this an object
- *                                   with the step's due date as the property key
- */
-const Project = {
-   title: '',
-   slug: '',
-   startDate: '',
-   dueDate: '',
-   completedDate: '',
-   status: '',
-   goals: {
-      1: '',
-      2: '',
-      3: '',
-      4: ''
-   },
-   notes: [],
-   steps: []
-};
-
 const dummyProject = {
    title: 'First Project',
    slug: 'first-project',
@@ -41,11 +6,12 @@ const dummyProject = {
    completedDate: '',
    status: 'planning',
    goals: {
-      1: 'Create some dummy data to work with.',
+      1: 'Create some dummy data.',
       2: '',
       3: '',
       4: ''
    },
+   tags: [],
    notes: [],
    steps: []
 };
@@ -58,16 +24,17 @@ const dummyProject2 = {
    completedDate: '',
    status: 'planning',
    goals: {
-      1: 'Create some dummy data to work with.',
+      1: 'Create some dummy data.',
       2: '',
       3: '',
       4: ''
    },
+   tags: [],
    notes: [],
    steps: []
 };
 
-const dummyProjects = [
+let dummyProjects = [
    dummyProject,
    dummyProject2
 ];

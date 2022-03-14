@@ -23,7 +23,7 @@ header {
 }
 
 #content {
-   margin-top: 4rem;
+   margin: 4rem auto;
    display: flex;
    gap: 4rem;
 }
@@ -80,11 +80,10 @@ a:hover {
 /* SIDEBAR */
 
 .sidebar {
-   width: 16rem;
+   width: 18rem;
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   border-right: 1px solid var(--gray-7);
    overflow-x: hidden;
 }
 
