@@ -328,7 +328,7 @@ details summary:focus {
    header,
    #content,
    footer {
-      width: 80vw;
+      width: 85vw;
    }
 }
 
@@ -337,7 +337,7 @@ details summary:focus {
    header,
    #content,
    footer {
-      width: 75vw;
+      width: 80vw;
    }
 }
 
@@ -346,7 +346,7 @@ details summary:focus {
    header,
    #content,
    footer {
-      width: 70vw;
+      width: 75vw;
    }
 }
 
@@ -359,12 +359,6 @@ details summary:focus {
 
 /* Narrow screens */
 @media screen and (max-width: 41rem) {
-   header,
-   #content,
-   footer {
-      width: 90vw;
-   }
-
    .header-inner {
       flex-direction: column;
       align-items: center;

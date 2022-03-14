@@ -1,5 +1,6 @@
 import {store} from './Store.js';
 import {Project} from '../components/Project.js';
+import {defaultProject, ProjectService} from '../services/projects.service.js';
 
 // Here's what needs to happen:
 // instead of the router loading preexisting pages, we need to
@@ -50,9 +51,22 @@ const router = (function () {
       history.pushState({id: pathId}, `Scheme.to | ${title}`, href);
    };
 
+   const getLastProject = function () {
+      const lastProjectSlug = store.get('lastProject');
+      return ProjectService.get(lastProjectSlug);
+   };
+
+   const setLastProject = function (projectSlug) {
+      store.set('lastProject', projectSlug);
+   }
+
    const getProjectData = function (pathSegment) {
       const projects = store.get('projects');
       // todo: if pathSegment === '', load lastProject
+
+      if (pathSegment === '') {
+         getLastProject();
+      }
 
       if (projects.length > 0) {
          const project =  projects.find((proj) => proj.slug === pathSegment);
@@ -62,8 +76,15 @@ const router = (function () {
 
    const loadPage = function (href) {
       const pathSegment = getLastSegment(getPath(href));
-      const data = getProjectData(pathSegment);
-      console.log(data);
+      const lastData = getLastProject();
+      let data = getProjectData(pathSegment);
+      if (data === undefined) {
+         if (lastData.length < 1) {
+            return Project(outlet, defaultProject)
+         }
+         return Project(outlet, lastData[0]);
+      }
+      setLastProject(data.slug);
       return Project(outlet, data);
    };
 

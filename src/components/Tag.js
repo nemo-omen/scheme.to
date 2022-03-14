@@ -4,6 +4,8 @@ const Tag = (function() {
    return function(text) {
       const tagId = shortId();
 
+      console.log(text);
+
       const template = `
       <div class="tag" id="${tagId}">
          <span class="tag-text" data-tag-id="${tagId}">${text}</span>

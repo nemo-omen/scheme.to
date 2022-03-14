@@ -21,17 +21,18 @@ const Project = (function (){
                </fieldset>
                <fieldset>
                   <label class="order-2" for="due-date-input" id="due-date-label">Due Date:</label>
-                  <input class="order-1" type="date" id="due-date-input" value="${new Date(project.startDate).toISOString().substring(0, 10)}" />
+                  <input class="order-1" type="date" id="due-date-input" value="${new Date(project.dueDate).toISOString().substring(0, 10)}" />
                </fieldset>
                <fieldset>
                   <label class="order-2" id="status-input-label" for="status-input">Status:</label>
-                  <select class="order-1" id="status-input" value="${project.status}">
+                  <select class="order-1" id="status-input">
                      <option value=""></option>
-                     <option value="planning">Planning</option>
-                     <option value="working">Working</option>
-                     <option value="waiting">Waiting For</option>
-                     <option value="completed">Completed</option>
-                     <option value="abandoned">Abandoned</option>
+                     <!-- unable to set the input's value within a template literal, so use ternaries to set selected option instead -->
+                     <option value="planning" ${project.status === 'planning' ? 'selected' : ''}>Planning</option>
+                     <option value="working" ${project.status === 'working' ? 'selected' : ''}>Working</option>
+                     <option value="waiting" ${project.status === 'waiting' ? 'selected' : ''}>Waiting For</option>
+                     <option value="completed" ${project.status === 'completed' ? 'selected' : ''}>Completed</option>
+                     <option value="abandoned" ${project.status === 'abandoned' ? 'selected' : ''}>Abandoned</option>
                   </select>
                </fieldset>
             </details>

@@ -34,6 +34,28 @@ const dummyProject2 = {
    steps: []
 };
 
+const currentDate = new Date();
+const futureDate = new Date();
+futureDate.setDate(currentDate.getDate() + 31)
+
+let defaultProject = {
+   title: 'Untitled',
+   slug: 'untitled-project',
+   startDate: currentDate.toLocaleDateString(),
+   dueDate: futureDate.toLocaleDateString(),
+   completedDate: '',
+   status: 'planning',
+   goals: {
+      1: '',
+      2: '',
+      3: '',
+      4: ''
+   },
+   tags: [],
+   notes: [],
+   steps: []
+}
+
 let dummyProjects = [
    dummyProject,
    dummyProject2
@@ -75,4 +97,4 @@ const ProjectService = (function () {
    
 }());
 
-export {ProjectService};
+export {ProjectService, defaultProject};
