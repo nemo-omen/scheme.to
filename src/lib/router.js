@@ -1,43 +1,22 @@
-import Day from '../pages/Day.js';
-import Home from '../pages/Home.js';
-import Month from '../pages/Month.js';
-import Week from '../pages/Week.js';
-import Year from '../pages/Year.js';
 
-const routes = {
-   home: {
-      id: '',
-      path: '/',
-      page: Home
-   },
-   day: {
-      id: 'day',
-      path: '/day',
-      page: Day
-   },
-   week: {
-      id: 'week',
-      path: '/week',
-      page: Week
-   },
-   month: {
-      id: 'month',
-      path: '/month',
-      page: Month
-   },
-   year: {
-      id: 'year',
-      path: '/year',
-      page: Year
-   }
-};
+// Here's what needs to happen:
+// instead of the router loading preexisting pages, we need to
+// have it get the the last segment of the url's path
+// and return the data with a property that matches that segment
+// -  slugs sounds like the most friendly way to do that for now
+//    plus, it ensures that we have unique titles for our projects
+//    and helps us avoid the need to generate unique ids
 
-// okay, let's try the 'revealing module pattern'
+// So, steps:
+// 1. Get the last segment of the path
+// 2. Find the data that matches that segment (this should probably be handled by a service!)
+// 3. Return the data or an error object
+// 4. The rest (updating UI etc) can be handled somewhere else 
+
+// okay, let's use the 'revealing module pattern'
 // with this little router.
 // @see: https://coryrylan.com/blog/javascript-module-pattern-basics
 const router = (function () {
-   let outlet = document.querySelector('main');
-
    /**
     * convert href string into a URL object and return URL.pathname
     * so we can avoid getting mired in regex (winning!)
@@ -54,44 +33,8 @@ const router = (function () {
     * @param {string} path  URL pathName property
     * @returns the last part of the path as a string
     */
-   const segments = function (path) {
+   const getLastSegment = function (path) {
       return path.split('/').slice(1);
-   };
-
-   /**
-    * Matches a route key to a given routeId
-    * @param {string} routeId  the route id to load
-    * @returns a route object with id, path, and template function
-    * @see: https://www.willtaylor.blog/client-side-routing-in-vanilla-js/
-    */
-   const matchRoute = function (routeId) {
-      return (
-         /* eslint-disable indent */
-         routeId === ''
-         ? routes.home
-         : routes[routeId]
-      );
-   };
-
-   /**
-    * Loads an app's page according to the given href property of an anchor tag
-    * or the given id from a popstate event
-    * @param {Object} options - Object containing either an href property or an id property
-    */
-   const loadPage = function (options) {
-      let segment;
-
-      if (options.href) {
-         segment = segments(getPath(options.href))[0];
-      } else {
-         segment = options.id;
-      }
-
-      // find the given page in the route object
-      // this will return a function with the functionality
-      // needed for the page component to append itself to
-      // the outlet element.
-      matchRoute(segment).page(outlet);
    };
 
    // use the browser's history API to push the
@@ -99,25 +42,21 @@ const router = (function () {
    // it in the address bar.
    // @see: https://gomakethings.com/how-to-update-a-url-without-reloading-the-page-using-vanilla-javascript/
    const setState = function (href) {
-      const pathId = segments(getPath(href))[0];
+      const pathId = getLastSegment(getPath(href))[0];
       const title = pathId.charAt(0).toUpperCase() + pathId.slice(1);
       history.pushState({id: pathId}, `Scheme.to | ${title}`, href);
    };
 
+   const getData = function (pathSegment) {
+
+   };
+
    return {
-      loadPage,
       setState
    };
 }());
 
-// route listener
-//  I'm naming and exporting this as an IIFE so that:
-// a) I can keep this logic in a separate file
-// b) It executes, then attaches the listener as soon as the import loads
-// Note: This isn't something I had to look up, it just seemed to make
-// sense. Before learning more about IIFEs, I would have had to import
-// this and call it explicitly. I feel like this will be useful in the future.
-
+// 
 const routeListener = (function () {
    return {
       listen: function () {
@@ -127,7 +66,7 @@ const routeListener = (function () {
             // means we should modify their default behavior
             // and use our router to deliver dynamic content
             // rather than navigating to a new location and losing
-            // our aplication state
+            // our application state
 
             if (!event.target.matches('[data-route]')) {
                return;
@@ -152,8 +91,8 @@ const routeListener = (function () {
 
 // toggle menu visibility
 const hideMenu = function () {
-  const menu = document.querySelector('nav');
-  menu.classList.toggle('menu-open');
+   const menu = document.querySelector('nav');
+   menu.classList.toggle('menu-open');
 };
 
 // popstate listener -- render a specified page template

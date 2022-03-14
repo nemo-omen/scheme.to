@@ -13,7 +13,7 @@ body {
 }
 
 header,
-main,
+#content,
 footer {
    margin: 0 auto;
 }
@@ -22,8 +22,14 @@ header {
    margin-top: 2rem;
 }
 
-main {
+#content {
    margin-top: 4rem;
+   display: flex;
+   gap: 4rem;
+}
+
+main {
+   width: 100%;
 }
 
 button,
@@ -71,32 +77,42 @@ a:hover {
    letter-spacing: 0.125em;
 }
 
-.header-menu {
+/* SIDEBAR */
+
+.sidebar {
+   width: 16rem;
    display: flex;
-   gap: 1rem;
+   flex-direction: column;
+   gap: 2rem;
+   border-right: 1px solid var(--primary);
+   overflow-x: hidden;
+}
+
+.sidebar-menu {
+   display: flex;
+   gap: 1.5rem;
+   flex-direction: column;
+   justify-content: center;
    list-style-type: none;
    margin: 0;
    padding: 0;
+   height: 100%;
+}
+
+.menu-item {
+   align-self: stretch;
+   min-width: 100%;
+   text-align: left;
+   white-space: nowrap;
 }
 
 .menu-item-link {
-   background: transparent;
-   border: none;
-   padding: 1rem;
-   font-size: 1.125rem;
-}
-
-.menu-rule {
-   margin: 0 1rem;
-   opacity: 0;
-   display: none;
-   border: none;
-   height: 2px;
-   background-color: var(--primary);
+   font-size: 1.25rem;
+   letter-spacing: 0.125em;
 }
 
 .menu-toggle {
-   position: absolute;
+   position: fixed;
    height: 3rem;
    width: 3rem;
    border-radius: 0.5rem 0.5rem 0 0;
@@ -112,8 +128,34 @@ a:hover {
    transform: translateX(-800%);
 }
 
+/* MAIN CONTENT */
+
+.page > * + * {
+   margin-top: 4rem;
+}
+
+.planner-header,
+.planner-body {
+   display: grid;
+   gap: 2rem;
+
+   /*
+   this is a pretty great rule that allows elements of
+   a grid layout to fill the available space
+   @see: https://web.dev/learn/css/grid/#auto-fill-and-auto-fit
+   */
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 fieldset {
    border: none;
+}
+
+/* ensure fieldsets within the planner header are columns */
+.planner-column fieldset {
+   display: flex;
+   flex-direction: column;
+   gap: 0.25rem;
 }
 
 input {
@@ -163,79 +205,12 @@ details summary {
    padding: 0.5rem;
 }
 
-details summary:focus {
-   background: var(--foreground);
-}
-
 details summary > * {
    display: inline;
 }
 
-/* MAIN CONTENT */
-
-.page > * + * {
-   margin-top: 4rem;
-}
-
-.hero {
-   display: flex;
-   flex-direction: column;
-}
-
-.hero-card {
-   border: 1px solid var(--primary);
-}
-
-.card-header {
-   background: var(--primary);
-   padding: 0.5rem;
-}
-
-.card-header h3 {
-   margin: 0;
-}
-
-.card-header time {
-   margin-inline: 0.5rem;
-}
-
-.card-body {
-   background-color: var(--primary);
-   gap: 1px;
-}
-
-.agenda-cell {
-   background-color: var(--background);
-   aspect-ratio: 1;
-   padding: 0.5rem;
-}
-
-.agenda-callout {
-   color: var(--accent);
-   background: var(--background);
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.planner-header,
-.planner-body {
-   display: grid;
-   gap: 2rem;
-
-   /*
-   this is a pretty great rule that allows elements of
-   a grid layout to fill the available space
-   @see: https://web.dev/learn/css/grid/#auto-fill-and-auto-fit
-   */
-   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-}
-
-/* ensure fieldsets within the planner header are columns */
-.planner-column fieldset {
-   display: flex;
-   flex-direction: column;
-   gap: 0.25rem;
+details summary:focus {
+   background: var(--foreground);
 }
 
 .field-stack input:not(:first-of-type) {
@@ -322,6 +297,10 @@ details summary > * {
    overflow: hidden;
 }
 
+.invisible {
+   display: none;
+}
+
 .order-1 {
    order: 1;
 }
@@ -332,33 +311,10 @@ details summary > * {
 
 /* Media Queries */
 
-/* Narrow screens */
-@media screen and (max-width: 41rem) {
-   header,
-   main,
-   footer {
-      width: 100vw;
-   }
-
-   .header-inner {
-      flex-direction: column;
-      align-items: center;
-   }
-
-   .agenda-cell {
-      aspect-ratio: 4 / 2;
-   }
-
-   .agenda-callout {
-      grid-column: span 1;
-      background: tomato;
-   }
-}
-
 /* Tablet landscape -- narrower */
 @media screen and (max-width: 51rem) {
    header,
-   main,
+   #content,
    footer {
       width: 90vw;
    }
@@ -367,24 +323,16 @@ details summary > * {
 /* Tablet landscape -- wider */
 @media screen and (min-width: 51rem) {
    header,
-   main,
+   #content,
    footer {
       width: 80vw;
-   }
-
-   .hero {
-      flex-direction: row;
-   }
-
-   .hero-card {
-      flex-grow: 1;
    }
 }
 
 /* Tablet landscape -- wider than */
 @media screen and (min-width: 63rem) {
    header,
-   main,
+   #content,
    footer {
       width: 75vw;
    }
@@ -393,7 +341,7 @@ details summary > * {
 /* Desktop monitor -- wider than */
 @media screen and (min-width: 80rem) {
    header,
-   main,
+   #content,
    footer {
       width: 70vw;
    }
@@ -406,44 +354,44 @@ details summary > * {
    }
 }
 
-/* Phones */
-@media screen and (max-width: 30rem) {
-   nav {
+/* Narrow screens */
+@media screen and (max-width: 41rem) {
+   header,
+   #content,
+   footer {
+      width: 90vw;
+   }
+
+   .header-inner {
+      flex-direction: column;
+      align-items: center;
+   }
+
+   .sidebar {
       position: absolute;
-      top: 0;
+      top: 6rem;
       left: 0;
       right: 0;
       bottom: 0;
+      width: 100%;
       padding: 2rem;
       background: var(--background);
       z-index: 999;
       transform: translateX(-100%);
       transition: all 0.2s ease-out;
       opacity: 0;
-      box-shadow: 5px 0 20px rgb(0 0 0 20%);
+      box-shadow: 5px 0 20px rgb(0 0 0 / 20%);
+      align-items: center;
+      overflow-y: auto;
+   }
+
+   .menu-item {
+      text-align: center;
    }
 
    .menu-open {
       transform: translateX(0);
       opacity: 1;
-   }
-
-   .header-menu {
-      height: 100%;
-      flex-direction: column;
-      justify-content: center;
-      gap: 2rem;
-   }
-
-   .menu-item {
-      align-self: stretch;
-      min-width: 100%;
-      text-align: center;
-   }
-
-   .menu-item-link {
-      font-size: 1.5rem;
-      letter-spacing: 0.125em;
    }
 
    .menu-toggle {
