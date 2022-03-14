@@ -76,6 +76,7 @@ const Project = (function (){
                <summary>
                   <h2>Notes</h2>
                </summary>
+               
             </details>
          </div>
          <div class="planner-column">
@@ -83,6 +84,7 @@ const Project = (function (){
                <summary>
                   <h2>Steps</h2>
                </summary>
+
             </details>
          </div>
       </div>
