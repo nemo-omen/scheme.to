@@ -84,7 +84,7 @@ a:hover {
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   border-right: 1px solid var(--primary);
+   border-right: 1px solid var(--gray-7);
    overflow-x: hidden;
 }
 
@@ -95,7 +95,7 @@ a:hover {
    justify-content: center;
    list-style-type: none;
    margin: 0;
-   padding: 0;
+   padding: 0 0.5rem;
    height: 100%;
 }
 
@@ -198,14 +198,18 @@ fieldset:focus-within label {
    color: var(--focus);
 }
 
-details summary {
-   cursor: pointer;
+details summary,
+.sidebar-header {
    background: var(--foreground);
    color: var(--background);
    padding: 0.5rem;
 }
 
-details summary > * {
+details summary {
+   cursor: pointer;
+}
+
+details summary h2 {
    display: inline;
 }
 
