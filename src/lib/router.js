@@ -52,13 +52,13 @@ const router = (function () {
    };
 
    const getLastProject = function () {
-      const lastProjectSlug = store.get('lastProject');
+      const lastProjectSlug = localStorage.getItem('lastProject');
       return ProjectService.get(lastProjectSlug);
    };
 
    const setLastProject = function (projectSlug) {
-      store.set('lastProject', projectSlug);
-   }
+      window.localStorage.setItem('lastProject', projectSlug);
+   };
 
    const getProjectData = function (pathSegment) {
       const projects = store.get('projects');
@@ -80,11 +80,17 @@ const router = (function () {
       let data = getProjectData(pathSegment);
       if (data === undefined) {
          if (lastData.length < 1) {
-            return Project(outlet, defaultProject)
+            return Project(outlet, defaultProject);
          }
          return Project(outlet, lastData[0]);
       }
       setLastProject(data.slug);
+
+      // add slug to an anchor tag, then grab the anchor's href attribute
+      const tempAnchor = document.createElement('a');
+      tempAnchor.setAttribute('href', `/${data.slug}`);
+      console.log(tempAnchor.href);
+      setState(tempAnchor.href);
       return Project(outlet, data);
    };
 
@@ -117,7 +123,7 @@ const routeListener = (function () {
             router.loadPage(event.target.href);
 
             // set the browser's address bar and history
-            router.setState(event.target.href);
+            // router.setState(event.target.href);
 
             // hide the navbar menu on mobile devices!
             hideMenu();

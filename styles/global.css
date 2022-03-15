@@ -15,6 +15,7 @@ body {
 header,
 #content,
 footer {
+   width: 90vw;
    margin: 0 auto;
 }
 
@@ -116,7 +117,7 @@ a:hover {
    width: 3rem;
    border-radius: 0.5rem 0.5rem 0 0;
    border: none;
-   border: 1px solid transparent;
+   border: 1px solid var(--background);
    border-bottom: none;
    background: var(--foreground);
    color: var(--background);
@@ -315,15 +316,6 @@ details summary:focus {
 
 /* Media Queries */
 
-/* Tablet landscape -- narrower */
-@media screen and (max-width: 51rem) {
-   header,
-   #content,
-   footer {
-      width: 90vw;
-   }
-}
-
 /* Tablet landscape -- wider */
 @media screen and (min-width: 51rem) {
    header,
@@ -334,22 +326,22 @@ details summary:focus {
 }
 
 /* Tablet landscape -- wider than */
-@media screen and (min-width: 63rem) {
+/* @media screen and (min-width: 63rem) {
    header,
    #content,
    footer {
       width: 80vw;
    }
-}
+} */
 
 /* Desktop monitor -- wider than */
-@media screen and (min-width: 80rem) {
+/* @media screen and (min-width: 80rem) {
    header,
    #content,
    footer {
       width: 75vw;
    }
-}
+} */
 
 /* Max width for horizontal header = 45rem */
 @media screen and (min-width: 45rem) {
@@ -366,13 +358,14 @@ details summary:focus {
    }
 
    .sidebar {
-      position: absolute;
-      top: 6rem;
+      position: fixed;
+      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       width: 100%;
       padding: 2rem;
+      padding-top: 30vh;
       background: var(--background);
       z-index: 999;
       transform: translateX(-100%);
@@ -381,6 +374,11 @@ details summary:focus {
       box-shadow: 5px 0 20px rgb(0 0 0 / 20%);
       align-items: center;
       overflow-y: auto;
+   }
+
+   .sidebar-header {
+      background: transparent;
+      color: var(--foreground);
    }
 
    .menu-item {
@@ -399,7 +397,8 @@ details summary:focus {
       z-index: 1000;
    }
 
-   .menu-toggle:hover {
+   .menu-toggle:hover,
+   .menu-toggle:active {
       color: var(--foreground);
       background: var(--background);
       border-color: var(--foreground);
