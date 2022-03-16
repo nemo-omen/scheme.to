@@ -85,7 +85,13 @@ a:hover {
    display: flex;
    flex-direction: column;
    gap: 2rem;
-   overflow-x: hidden;
+}
+
+.sidebar-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 1rem;
 }
 
 .sidebar-menu {
@@ -104,6 +110,7 @@ a:hover {
    min-width: 100%;
    text-align: left;
    white-space: nowrap;
+   display: block;
 }
 
 .menu-item-link {
@@ -111,7 +118,7 @@ a:hover {
    letter-spacing: 0.125em;
 }
 
-.menu-toggle {
+#menu-toggle {
    position: fixed;
    height: 3rem;
    width: 3rem;
@@ -186,6 +193,51 @@ select:focus {
 fieldset > label {
    color: var(--blur);
    cursor: pointer;
+}
+
+button {
+   background: var(--background);
+   color: var(--foreground);
+   border-radius: 0;
+   font-size: 1.25rem;
+   font-weight: 600;
+   border: 1px solid var(--foreground);
+}
+
+.sidebar-button {
+   background: var(--foreground);
+   color: var(--background);
+   border: 1px solid var(--background);
+   position: relative;
+   overflow: visible;
+}
+
+.sidebar-button:hover,
+.sidebar-button:active {
+   background: var(--background);
+   color: var(--foreground);
+}
+
+.sidebar-button::before {
+   content: attr(data-text);
+   font-size: 1rem;
+   font-weight: 500;
+   position: absolute;
+   top: -3rem;
+   left: -2rem;
+   padding: 0.5rem;
+   z-index: 200;
+   background: var(--foreground);
+   color: var(--background);
+   /* width: 13ch; */
+   white-space: nowrap;
+   opacity: 0;
+   transition: opacity 0.2s ease-in-out;
+   transition-delay: 0.2s;
+}
+
+.sidebar-button:hover::before {
+   opacity: 1;
 }
 
 /*
@@ -325,24 +377,6 @@ details summary:focus {
    }
 }
 
-/* Tablet landscape -- wider than */
-/* @media screen and (min-width: 63rem) {
-   header,
-   #content,
-   footer {
-      width: 80vw;
-   }
-} */
-
-/* Desktop monitor -- wider than */
-/* @media screen and (min-width: 80rem) {
-   header,
-   #content,
-   footer {
-      width: 75vw;
-   }
-} */
-
 /* Max width for horizontal header = 45rem */
 @media screen and (min-width: 45rem) {
    .header-inner {
@@ -390,15 +424,15 @@ details summary:focus {
       opacity: 1;
    }
 
-   .menu-toggle {
+   #menu-toggle {
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       z-index: 1000;
    }
 
-   .menu-toggle:hover,
-   .menu-toggle:active {
+   #menu-toggle:hover,
+   #menu-toggle:active {
       color: var(--foreground);
       background: var(--background);
       border-color: var(--foreground);

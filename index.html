@@ -27,18 +27,21 @@
 
 <body>
    <header>
-      <button class="menu-toggle">S</button>
+      <button id="menu-toggle">S</button>
       <div class="header-inner">
          <div class="header-main-link">
             <h1>
-               <a href="/" data-route>Scheme.to</a>
+               <a href="/">Scheme.to</a>
             </h1>
          </div>
       </div>
    </header>
    <div id="content">
       <aside class="sidebar">
-         <h2 class="sidebar-header">Projects</h2>
+         <div class="sidebar-header">
+            <h2>Projects</h2>
+            <button class="sidebar-button" data-text="New Project" id="new-project-button">+</button>
+         </div>
          <nav aria-label="Main Navigation">
             <ol id="projects-menu" class="sidebar-menu">
 

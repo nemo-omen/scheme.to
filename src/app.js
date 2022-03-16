@@ -6,7 +6,8 @@ import routeListener from './lib/router.js';
 
 let projects = [];
 const projectsMenu = document.getElementById('projects-menu');
-const menuButton = select('.menu-toggle');
+const menuButton = select('#menu-toggle');
+const newProjectButton = select('#new-project-button');
 const sidebar = document.querySelector('.sidebar');
 
 routeListener.listen();
@@ -32,6 +33,10 @@ const insertProjectLink = function (project) {
 
 menuButton.addEventListener('click', function () {
    sidebar.classList.toggle('menu-open');
+});
+
+newProjectButton.addEventListener('click', function (event) {
+   console.log(event);
 });
 
 document.addEventListener('DOMContentLoaded', function () {
