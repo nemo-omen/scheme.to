@@ -66,7 +66,7 @@ const Store = function (initialState) {
 };
 
 // call the Store function so we have an instance to export
-// this effectively gives us global state managgement
+// this effectively gives us a global state management singleton
 // that we can use no matter what page is loaded
 const store = Store();
 export {store};
