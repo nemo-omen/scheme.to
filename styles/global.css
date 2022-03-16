@@ -80,7 +80,7 @@ a:hover {
 
 /* SIDEBAR */
 
-.sidebar {
+#sidebar {
    width: 18rem;
    display: flex;
    flex-direction: column;
@@ -106,11 +106,17 @@ a:hover {
 }
 
 .menu-item {
+   display: flex;
+   flex-direction: column;
    align-self: stretch;
    min-width: 100%;
    text-align: left;
    white-space: nowrap;
-   display: block;
+}
+
+.menu-item time {
+   font-size: 0.9rem;
+   color: var(--black-4);
 }
 
 .menu-item-link {
@@ -391,7 +397,7 @@ details summary:focus {
       align-items: center;
    }
 
-   .sidebar {
+   #sidebar {
       position: fixed;
       top: 0;
       left: 0;
@@ -419,7 +425,7 @@ details summary:focus {
       text-align: center;
    }
 
-   .menu-open {
+   #sidebar.menu-open {
       transform: translateX(0);
       opacity: 1;
    }
