@@ -16,21 +16,12 @@ routeListener.listen();
 const loadProjects = function () {
    projects = ProjectService.getAll();
    
-   if (projects && projects.length > 0) {
-      Sidebar(mainNav, projects);
+   if (projects) {
       store.set('projects', [...projects]);
    }
+
+   Sidebar(mainNav, projects);
 };
-
-// const insertProjectLink = function (project) {
-//    const template = `
-//       <li class="menu-item">
-//          <a class="menu-item-link" href="/${project.slug}" data-route>${project.title}</a>
-//       </li>
-//    `;
-
-//    projectsMenu.innerHTML += template;
-// };
 
 
 

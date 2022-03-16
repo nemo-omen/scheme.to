@@ -89,7 +89,6 @@ const router = (function () {
       // add slug to an anchor tag, then grab the anchor's href attribute
       const tempAnchor = document.createElement('a');
       tempAnchor.setAttribute('href', `/${data.slug}`);
-      console.log(tempAnchor.href);
       setState(tempAnchor.href);
       return Project(outlet, data);
    };

@@ -4,7 +4,7 @@ const Store = function (initialState) {
    // --note:  I'm using nullish coalescing here. If initialState is undefined
    //          the value will be set to an empty object
    //          @see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator
-   const state = {initialState} ?? {};
+   const state = {...initialState} ?? {};
 
    // instead of a list of subscribers, we'll create separate lists
    // as properties with keys that match a state property's key
