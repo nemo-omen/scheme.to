@@ -1,6 +1,5 @@
 import {store} from './Store.js';
 import {Project} from '../components/Project.js';
-import {defaultProject, ProjectService} from '../services/projects.service.js';
 
 // Here's what needs to happen:
 // instead of the router loading preexisting pages, we need to
@@ -52,8 +51,9 @@ const router = (function () {
    };
 
    const getLastProject = function () {
-      const lastProjectSlug = localStorage.getItem('lastProject');
-      return ProjectService.get(lastProjectSlug);
+      const lastProjectSlug = window.localStorage.getItem('lastProject');
+      console.log(store.getOne('projects', lastProjectSlug));
+      return store.getOne('projects', lastProjectSlug);
    };
 
    const setLastProject = function (projectSlug) {

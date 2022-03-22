@@ -1,5 +1,4 @@
 import {select} from './util/domUtils.js';
-import {ProjectService} from './services/projects.service.js';
 import {store} from './lib/Store.js';
 import routeListener from './lib/router.js';
 import {Sidebar} from './components/Sidebar.js';
@@ -14,9 +13,9 @@ const menuButton = select('#menu-toggle');
 routeListener.listen();
 
 const loadProjects = function () {
-   projects = ProjectService.getAll();
+   projects = store.get('projects');
    
-   if (projects) {
+   if (projects !== null && projects !== 'undefined') {
       store.set('projects', [...projects]);
    }
 
